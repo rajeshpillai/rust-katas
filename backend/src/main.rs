@@ -29,12 +29,15 @@ async fn main() {
         .layer(CorsLayer::permissive())
         .fallback_service(ServeDir::new("../frontend/dist"));
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
-        .await
-        .expect("Failed to bind to port 3000");
+    let port = std::env::var("PORT").unwrap_or_else(|_| "6000".to_string());
+    let addr = format!("0.0.0.0:{}", port);
 
-    tracing::info!("Server running on http://localhost:3000");
-    println!("Server running on http://localhost:3000");
+    let listener = tokio::net::TcpListener::bind(&addr)
+        .await
+        .expect(&format!("Failed to bind to {}", addr));
+
+    tracing::info!("Server running on http://localhost:{}", port);
+    println!("Server running on http://localhost:{}", port);
 
     axum::serve(listener, app).await.unwrap();
 }

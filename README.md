@@ -17,11 +17,12 @@ A structured learning platform for Rust and WebAssembly. Learn through deliberat
 
 ### Development
 
-Start the backend:
+Start the backend (default port 6000, override with `PORT` env var):
 
 ```sh
 cd backend
 cargo run
+# or: PORT=8080 cargo run
 ```
 
 Start the frontend dev server (proxies `/api` to backend):
@@ -41,7 +42,7 @@ cd frontend && npm run build
 cd ../backend && cargo run
 ```
 
-Open `http://localhost:3000`.
+Open `http://localhost:6000`.
 
 ## Project Structure
 
