@@ -6,7 +6,7 @@ sequence: 2
 title: Ownership and References Across Await Points
 hints:
   - An .await point is where the future suspends and may be resumed later
-  - Any data referenced across an .await must live long enough -- but the compiler often cannot prove this
+  - Any data referenced across an .await must live long enough
   - The simplest fix is to own the data instead of borrowing it
   - If you must borrow, ensure the borrow does not span an .await point
 ---
@@ -18,14 +18,35 @@ When an async function hits an `.await` point, it suspends execution. The runtim
 ## Broken Code
 
 ```rust
-// Cargo.toml dependencies:
-// tokio = { version = "1", features = ["full"] }
+use std::future::Future;
+use std::pin::Pin;
+use std::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};
 
-use std::time::Duration;
+fn block_on<F: Future>(future: F) -> F::Output {
+    let waker = noop_waker();
+    let mut cx = Context::from_waker(&waker);
+    let mut future = Box::pin(future);
+    loop {
+        match future.as_mut().poll(&mut cx) {
+            Poll::Ready(val) => return val,
+            Poll::Pending => std::thread::yield_now(),
+        }
+    }
+}
+
+fn noop_waker() -> Waker {
+    fn clone(_: *const ()) -> RawWaker {
+        RawWaker::new(std::ptr::null(), &VTABLE)
+    }
+    fn no_op(_: *const ()) {}
+    static VTABLE: RawWakerVTable = RawWakerVTable::new(clone, no_op, no_op, no_op);
+    unsafe { Waker::from_raw(RawWaker::new(std::ptr::null(), &VTABLE)) }
+}
 
 async fn process(data: &str) {
     println!("Processing: {}", data);
-    tokio::time::sleep(Duration::from_millis(100)).await;
+    // Simulate async work with an await point
+    std::future::ready(()).await;
     println!("Done processing: {}", data);
 }
 
@@ -42,23 +63,42 @@ async fn run() {
     result.await;
 }
 
-#[tokio::main]
-async fn main() {
-    run().await;
+fn main() {
+    block_on(run());
 }
 ```
 
 ## Correct Code
 
 ```rust
-// Cargo.toml dependencies:
-// tokio = { version = "1", features = ["full"] }
+use std::future::Future;
+use std::pin::Pin;
+use std::task::{Context, Poll, RawWaker, RawWakerVTable, Waker};
 
-use std::time::Duration;
+fn block_on<F: Future>(future: F) -> F::Output {
+    let waker = noop_waker();
+    let mut cx = Context::from_waker(&waker);
+    let mut future = Box::pin(future);
+    loop {
+        match future.as_mut().poll(&mut cx) {
+            Poll::Ready(val) => return val,
+            Poll::Pending => std::thread::yield_now(),
+        }
+    }
+}
+
+fn noop_waker() -> Waker {
+    fn clone(_: *const ()) -> RawWaker {
+        RawWaker::new(std::ptr::null(), &VTABLE)
+    }
+    fn no_op(_: *const ()) {}
+    static VTABLE: RawWakerVTable = RawWakerVTable::new(clone, no_op, no_op, no_op);
+    unsafe { Waker::from_raw(RawWaker::new(std::ptr::null(), &VTABLE)) }
+}
 
 async fn process(data: String) {
     println!("Processing: {}", data);
-    tokio::time::sleep(Duration::from_millis(100)).await;
+    std::future::ready(()).await;
     println!("Done processing: {}", data);
 }
 
@@ -69,9 +109,8 @@ async fn run() {
     process(temp).await;
 }
 
-#[tokio::main]
-async fn main() {
-    run().await;
+fn main() {
+    block_on(run());
 }
 ```
 
@@ -90,7 +129,7 @@ Think of it this way: an async function's body is a state machine. Any reference
 **Two strategies to fix this:**
 
 1. **Own the data** (used in the correct version): Change the parameter from `&str` to `String`. The future owns the data and cannot have a dangling reference.
-2. **Keep the borrow alive**: Ensure the referenced data lives at least as long as the future. In the correct version, we could also keep `temp` alive and await in the same scope:
+2. **Keep the borrow alive**: Ensure the referenced data lives at least as long as the future. For example:
 
 ```rust
 async fn run() {
@@ -107,15 +146,15 @@ The invariant violated in the broken code: **a future that borrows data must not
 
 ```
 error[E0597]: `temp` does not live long enough
-  --> src/main.rs:15:18
+  --> main.rs:36:18
    |
-13 |     let result = {
+34 |     let result = {
    |         ------ borrow later used here
-14 |         let temp = String::from("temporary data");
+35 |         let temp = String::from("temporary data");
    |             ---- binding `temp` declared here
-15 |         process(&temp)
+36 |         process(&temp)
    |                 ^^^^^ borrowed value does not live long enough
-16 |     };
+37 |     };
    |     - `temp` dropped here while still borrowed
 ```
 
