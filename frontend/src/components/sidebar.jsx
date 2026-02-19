@@ -1,10 +1,28 @@
-import { createSignal, createResource, For, Show } from "solid-js";
+import { createSignal, createResource, createEffect, For, Show } from "solid-js";
 import { fetchKatas } from "../api";
 import { sidebarExpanded, setSidebarExpanded, currentKataId, setCurrentKataId } from "../state";
 
 export default function Sidebar(props) {
   const [kataList] = createResource(fetchKatas);
   const [openPhases, setOpenPhases] = createSignal(new Set([0]));
+
+  // Auto-expand the phase containing the current kata (e.g. from URL)
+  createEffect(() => {
+    const list = kataList();
+    const id = currentKataId();
+    if (!list || !id) return;
+    for (const phase of list.phases) {
+      if (phase.katas.some((k) => k.id === id)) {
+        setOpenPhases((prev) => {
+          if (prev.has(phase.phase)) return prev;
+          const next = new Set(prev);
+          next.add(phase.phase);
+          return next;
+        });
+        break;
+      }
+    }
+  });
 
   function togglePhase(phase) {
     setOpenPhases((prev) => {
@@ -17,6 +35,7 @@ export default function Sidebar(props) {
 
   function selectKata(id) {
     setCurrentKataId(id);
+    window.location.hash = `#/katas/${id}`;
     if (props.onSelectKata) props.onSelectKata(id);
   }
 

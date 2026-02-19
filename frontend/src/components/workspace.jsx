@@ -15,6 +15,7 @@ export default function Workspace() {
   const [running, setRunning] = createSignal(false);
   const [maximized, setMaximized] = createSignal(null); // null | 'code' | 'output'
   const [splitRatio, setSplitRatio] = createSignal(0.5);
+  const [activeView, setActiveView] = createSignal("broken"); // "broken" | "correct" | null
   const [showExplanation, setShowExplanation] = createSignal(false);
   const [showInterpretation, setShowInterpretation] = createSignal(false);
 
@@ -25,6 +26,7 @@ export default function Workspace() {
     if (k && k.id !== prevKataId) {
       prevKataId = k.id;
       setCode(k.broken_code);
+      setActiveView("broken");
       setResult(null);
       setShowExplanation(false);
       setShowInterpretation(false);
@@ -112,10 +114,11 @@ export default function Workspace() {
       <div class="workspace" ref={containerRef}>
         <CodePanel
           code={code()}
-          onCodeChange={setCode}
+          onCodeChange={(val) => { setCode(val); setActiveView(null); }}
           onRun={handleRun}
-          onLoadBroken={() => { setCode(kata()?.broken_code || ""); setResult(null); }}
-          onLoadCorrect={() => { setCode(kata()?.correct_code || ""); setResult(null); }}
+          onLoadBroken={() => { setCode(kata()?.broken_code || ""); setActiveView("broken"); setResult(null); }}
+          onLoadCorrect={() => { setCode(kata()?.correct_code || ""); setActiveView("correct"); setResult(null); }}
+          activeView={activeView()}
           kata={kata()}
           running={running()}
           basis={maximized() === "code" ? "100%" : maximized() === "output" ? "0%" : `${splitRatio() * 100}%`}

@@ -26,10 +26,16 @@ export default function CodePanel(props) {
         <span>Code</span>
         <div style={{ display: "flex", gap: "0.375rem", "align-items": "center" }}>
           <Show when={props.kata}>
-            <button class="btn btn--small" onClick={() => props.onLoadBroken?.()}>
+            <button
+              class={`btn btn--small ${props.activeView === "broken" ? "btn--active" : ""}`}
+              onClick={() => props.onLoadBroken?.()}
+            >
               Broken
             </button>
-            <button class="btn btn--small" onClick={() => props.onLoadCorrect?.()}>
+            <button
+              class={`btn btn--small ${props.activeView === "correct" ? "btn--active" : ""}`}
+              onClick={() => props.onLoadCorrect?.()}
+            >
               Correct
             </button>
           </Show>

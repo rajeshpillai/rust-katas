@@ -23,7 +23,7 @@ function App() {
       <Match when={route() === "#/" || route() === ""}>
         <Landing />
       </Match>
-      <Match when={route() === "#/katas"}>
+      <Match when={route().startsWith("#/katas")}>
         <KataBrowser />
       </Match>
     </Switch>
