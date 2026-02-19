@@ -27,6 +27,8 @@ pub async fn execute_rust_code(code: &str) -> ExecutionResult {
     let compile_result = timeout(
         COMPILE_TIMEOUT,
         tokio::process::Command::new("rustc")
+            .arg("--edition")
+            .arg("2021")
             .arg(&source_path)
             .arg("-o")
             .arg(&binary_path)
