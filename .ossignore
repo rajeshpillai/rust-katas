@@ -1,0 +1,7 @@
+# LLM / AI hints — not for OSS distribution
+CLAUDE.md
+todo.md
+
+# Publishing infrastructure
+scripts/
+.ossignore

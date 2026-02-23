@@ -207,6 +207,7 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
+  min-height: 0;
 }
 
 .panel {
@@ -242,21 +243,22 @@ body {
   background: var(--handle-hover);
 }
 
-/* ── Code editor ── */
-.code-textarea {
+/* ── Code editor (CodeMirror 6) ── */
+.code-editor-container {
   flex: 1;
-  width: 100%;
-  padding: 1rem;
-  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  background: var(--bg-code);
-  color: var(--text-primary);
-  border: none;
+  overflow: hidden;
+  display: flex;
+  min-height: 0;
+}
+.code-editor-container .cm-editor {
+  flex: 1;
+  overflow: hidden;
+}
+.code-editor-container .cm-editor .cm-scroller {
+  overflow: auto;
+}
+.code-editor-container .cm-editor.cm-focused {
   outline: none;
-  resize: none;
-  tab-size: 4;
-  transition: background 0.2s, color 0.2s;
 }
 
 /* ── Output ── */

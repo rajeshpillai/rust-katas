@@ -93,7 +93,7 @@ export default function Workspace() {
   }
 
   return (
-    <div style={{ display: "flex", "flex-direction": "column", flex: "1", "min-width": "0" }}>
+    <div style={{ display: "flex", "flex-direction": "column", flex: "1", "min-width": "0", "min-height": "0", overflow: "hidden" }}>
       {/* Kata info bar */}
       <Show when={trackKata()}>
         <div style={{
