@@ -176,6 +176,17 @@ In the broken (ambient) model, security depends on correctly implementing the de
 
 The invariant violated in the broken code: **in capability-based systems, authority comes from possession of a handle, not from naming a resource; the guest should not be able to specify file paths.**
 
+## ⚠️ Caution
+
+- Ambient authority (checking permissions by name) is vulnerable to confused deputy attacks. Always pass capabilities as values.
+- Capability handles must not be forgeable — if a module can construct arbitrary handle IDs, the security model collapses.
+
+## 💡 Tips
+
+- Model capabilities as opaque types in Rust — the type system prevents unauthorized construction.
+- WASI's design principle: "you can only access resources you've been given handles to."
+- Use Rust's visibility system (`pub(crate)`, private constructors) to enforce capability creation rules.
+
 ## Compiler Error Interpretation
 
 ```

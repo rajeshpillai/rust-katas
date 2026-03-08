@@ -303,6 +303,17 @@ All I/O goes through `HostCallbacks`. The interpreter never calls `println!` dir
 
 The invariant violated in the broken code: **sandboxed interpreters must meter all resources (instructions, I/O, memory) and halt cleanly when any budget is exhausted.**
 
+## ⚠️ Caution
+
+- Fuel metering alone is not enough — also limit memory, output size, and stack depth. A script that allocates unlimited memory can DoS the host.
+- Host callbacks from sandboxed code must be treated as untrusted input. Validate all arguments from the guest.
+
+## 💡 Tips
+
+- Set resource budgets at sandbox creation: `Sandbox::new(fuel: 1000, memory: 1MB, output: 10KB)`.
+- Log resource usage for monitoring and capacity planning.
+- Study production sandboxes: Cloudflare Workers (CPU limits), Shopify Functions (memory + fuel), Fastly Compute (time limits).
+
 ## Compiler Error Interpretation
 
 The broken code does not produce a compiler error or a runtime panic -- it *hangs*:

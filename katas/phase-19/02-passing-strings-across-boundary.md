@@ -123,6 +123,17 @@ This pattern applies to all variable-length data: `Vec<T>`, byte arrays, seriali
 
 The invariant violated in the broken code: **variable-length data must be passed as (pointer, length); a pointer alone is insufficient because the reader cannot determine the extent of the data.**
 
+## ⚠️ Caution
+
+- WASM strings are NOT null-terminated like C strings. Always pass (pointer, length) pairs across the boundary. Assuming null termination causes reads beyond the intended data.
+- UTF-8 validity is not guaranteed when reading bytes from linear memory. Always validate with `std::str::from_utf8()` or use `from_utf8_unchecked()` only with a safety comment.
+
+## 💡 Tips
+
+- The `wasm-bindgen` protocol for strings is: allocate in WASM, write from host, pass (ptr, len).
+- For any variable-length data (strings, arrays, structs with dynamic fields), always use the (pointer, length) pattern.
+- Consider passing UTF-8 validation responsibility to the producer side to avoid redundant checks.
+
 ## Compiler Error Interpretation
 
 ```

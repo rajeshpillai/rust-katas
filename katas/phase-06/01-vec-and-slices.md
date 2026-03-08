@@ -101,6 +101,16 @@ numbers.retain(|&num| num >= 0);
 
 Functions that only read elements should accept `&[T]`, not `&Vec<T>`. This is more flexible because it accepts arrays, slices, and vectors alike.
 
+## ⚠️ Caution
+
+- `drain_filter` (now `extract_if`) is nightly-only. For stable Rust, use `retain()` for in-place filtering or collect into a new Vec.
+- Never index a Vec without bounds checking in production code — prefer `.get(i)` which returns `Option<&T>` instead of panicking.
+
+## 💡 Tips
+
+- Accept `&[T]` instead of `&Vec<T>` in function parameters — it is more flexible and idiomatic.
+- Use `.iter()` for `&T`, `.iter_mut()` for `&mut T`, and `.into_iter()` to consume the Vec and take ownership of elements.
+
 ## Compiler Error Interpretation
 
 ```

@@ -114,6 +114,16 @@ fn apply_once<F: FnOnce() -> String>(f: F) -> String {
 }
 ```
 
+## ⚠️ Caution
+
+- `move` does not make a closure `FnOnce`. The Fn trait is determined by how the closure uses its captures (read, mutate, or consume), not by how it captures them.
+- A closure that consumes a captured value (e.g., `drop(x)`) can only be called once (`FnOnce`), which prevents passing it to functions that expect `Fn` or `FnMut`.
+
+## 💡 Tips
+
+- Accept `FnOnce` when your function only calls the closure once (e.g., a callback). Accept `Fn` when you may call it multiple times.
+- The hierarchy is: `FnOnce` ⊇ `FnMut` ⊇ `Fn`. Every `Fn` is also `FnMut` and `FnOnce`.
+
 ## Compiler Error Interpretation
 
 ```

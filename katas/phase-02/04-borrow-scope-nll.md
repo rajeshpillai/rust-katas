@@ -72,6 +72,17 @@ In the correct code, the timeline looks like this:
 
 There is no overlap, so the code compiles. The key insight: **borrows are about time, not syntax.** The compiler reasons about when references are actually used, not where they are declared.
 
+## ⚠️ Caution
+
+- **NLL can be surprising when a reference is kept alive by a later use you forgot about.** If you add a `println!` or debug statement that uses an old reference, it extends the borrow and may cause new compiler errors. The fix is to remove or move that use.
+- **NLL is edition-dependent.** Rust 2015 used lexical lifetimes (borrows last until end of block). Rust 2018+ uses NLL. Always use edition 2021 or later for modern borrow checking behavior.
+
+## 💡 Tips
+
+- When you get a borrow conflict, look at the "later used here" line in the error message. That is the line keeping the borrow alive. Moving or removing that use often resolves the conflict.
+- You rarely need explicit scoping blocks `{ }` with NLL. Just stop using the reference before creating a new one, and the compiler will be satisfied.
+- Think of borrows as having a "timeline" from creation to last use. Two borrows conflict only if their timelines overlap.
+
 ## Compiler Error Interpretation
 
 ```

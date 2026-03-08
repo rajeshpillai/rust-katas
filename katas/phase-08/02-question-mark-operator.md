@@ -120,6 +120,17 @@ When used on `Option`, `?` returns `None` on `None`. The enclosing function must
 
 **You cannot mix `Result` and `Option` with `?` in the same function** without converting between them (using `.ok_or()` to convert `Option` to `Result`, or `.ok()` to convert `Result` to `Option`).
 
+## ⚠️ Caution
+
+- `?` in a closure returns from the closure, not the enclosing function. This is a common surprise when using `?` inside `.map()` or `.for_each()`.
+- You cannot mix `?` on `Option` and `Result` in the same function without converting — use `.ok_or("message")` to convert `Option` to `Result`.
+
+## 💡 Tips
+
+- Use `.ok_or()` or `.ok_or_else()` to convert `Option<T>` to `Result<T, E>` for use with `?`.
+- `fn main() -> Result<(), Box<dyn Error>>` lets you use `?` in main for quick prototyping.
+- The `?` operator is syntactic sugar for early return on error — it desugars to a `match` with automatic `From` conversion.
+
 ## Compiler Error Interpretation
 
 ```

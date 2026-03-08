@@ -108,6 +108,17 @@ fn maybe_transform(s: &str) -> Cow<str> {
 
 **Best practice for function parameters:** Accept `&str` when you only need to read a string. This is more flexible than accepting `&String`, because `&str` can come from a `String`, a string literal, a slice, or any other source of UTF-8 data.
 
+## ⚠️ Caution
+
+- String slicing on non-UTF-8 character boundaries panics at runtime. `&s[0..1]` is safe for ASCII but will panic if index 1 falls in the middle of a multi-byte character. Use `.chars()` or `.char_indices()` for safe character access.
+- `&String` auto-derefs to `&str`, so you rarely need `&String` in APIs.
+
+## 💡 Tips
+
+- Accept `&str` in function parameters (not `&String`) — it works with both `String` and string literals.
+- Use `Cow<str>` when a function sometimes needs to allocate a new string and sometimes can return a borrowed slice.
+- Use `.to_string()` or `.to_owned()` to convert `&str` to `String`.
+
 ## Compiler Error Interpretation
 
 ```

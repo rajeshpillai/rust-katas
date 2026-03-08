@@ -137,6 +137,17 @@ macro_rules! vec {
 }
 ```
 
+## ⚠️ Caution
+
+- The separator in `$(...),*` must match the input exactly. Using `,*` (comma-separated) when the input uses `;` will fail silently or produce confusing errors.
+- Nested repetitions must have matching nesting levels — each `$(...)*` in the expansion must correspond to a `$(...)*` in the pattern.
+
+## 💡 Tips
+
+- Use `$($x:expr),* $(,)?` to optionally accept a trailing comma — this matches both `[1, 2, 3]` and `[1, 2, 3,]`.
+- Test macros with `assert_eq!` to verify the expansion produces the expected result.
+- The `*` means zero or more, `+` means one or more.
+
 ## Compiler Error Interpretation
 
 ```

@@ -158,6 +158,17 @@ WASM and Rust both take the strict approach: the types must match, period. This 
 
 The invariant violated in the broken code: **a trait implementation's method signatures must exactly match the trait definition; interface contracts are enforced by the compiler.**
 
+## ⚠️ Caution
+
+- WASM import/export contracts are checked at instantiation time, not compile time. A type mismatch between host and guest is a runtime error.
+- Renaming or reordering function parameters is an ABI-breaking change, even if the types are the same.
+
+## 💡 Tips
+
+- Model WASM contracts as Rust traits — this gives you compile-time checking of the contract shape.
+- Version your contracts explicitly so hosts and guests can negotiate compatibility.
+- Test contract compliance with integration tests that instantiate the WASM module.
+
 ## Compiler Error Interpretation
 
 ```

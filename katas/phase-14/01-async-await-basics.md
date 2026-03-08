@@ -148,6 +148,17 @@ After work
 
 The invariant violated in the broken code: **futures are lazy; calling an async function only constructs the future -- you must poll it (via an executor or `.await`) to execute it.**
 
+## ⚠️ Caution
+
+- Futures in Rust are lazy — calling an async function returns a `Future` but does not execute anything. You must `.await` it or spawn it on an executor. Forgetting `.await` is a silent bug (the compiler only warns).
+- Rust has no built-in async runtime. You need an executor like `tokio`, `async-std`, or a custom one to run futures.
+
+## 💡 Tips
+
+- Add `#[deny(unused_must_use)]` to catch forgotten `.await` calls — the `Future` type is `#[must_use]`.
+- Use `tokio::main` or `async_std::main` macros to set up the runtime automatically.
+- Think of `async fn` as returning a state machine, not as running code concurrently.
+
 ## Compiler Error Interpretation
 
 ```

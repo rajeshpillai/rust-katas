@@ -74,6 +74,17 @@ In languages like C++, Java, or Go, you can freely pass any object to any thread
 
 The invariant violated in the broken code: **`Rc<T>` is not `Send` because its reference count is not atomic; use `Arc<T>` for data that must cross thread boundaries.**
 
+## ⚠️ Caution
+
+- `Rc` is not `Send` because its reference count is not atomic. Using `Rc` across threads would cause data races on the count. Use `Arc` instead.
+- `unsafe impl Send for T` is extremely dangerous — you are promising the compiler that `T` is safe to transfer across threads. A wrong promise leads to undefined behavior.
+
+## 💡 Tips
+
+- Most types are automatically `Send` and `Sync`. You only notice these traits when the compiler says a type is not.
+- `Send` means "ownership can transfer to another thread." `Sync` means "references can be shared across threads." `T: Sync` ⟺ `&T: Send`.
+- Use `Arc` for shared ownership across threads and `Mutex` or `RwLock` for shared mutation.
+
 ## Compiler Error Interpretation
 
 ```

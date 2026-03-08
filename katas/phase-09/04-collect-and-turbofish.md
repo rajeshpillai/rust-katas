@@ -103,6 +103,17 @@ The name "turbofish" comes from the visual resemblance of `::<>` to a fish. Desp
 
 Note that `collect()` is not just for `Vec`. You can collect an iterator of `char` into a `String`, an iterator of `(K, V)` tuples into a `HashMap`, or even an iterator of `Result<T, E>` into a `Result<Vec<T>, E>` -- which short-circuits on the first error. This last pattern is particularly powerful for error handling in iterator pipelines.
 
+## ⚠️ Caution
+
+- Using turbofish on the wrong method in a chain is a common mistake. The turbofish goes on `collect`, not on `map` or `filter`.
+- `collect()` can fail silently if you collect into the wrong type — e.g., collecting `Result` iterators into `Vec<Result>` vs `Result<Vec>` gives very different behavior.
+
+## 💡 Tips
+
+- Collecting `Iterator<Item = Result<T, E>>` into `Result<Vec<T>, E>` short-circuits on the first error — a powerful pattern.
+- Use `Vec<_>` with turbofish when the element type can be inferred: `.collect::<Vec<_>>()`.
+- You can collect into `String`, `HashMap`, `BTreeSet`, and many other types — check `FromIterator` implementations.
+
 ## Compiler Error Interpretation
 
 ```

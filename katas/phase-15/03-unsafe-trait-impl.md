@@ -172,6 +172,17 @@ Only when you have genuinely verified thread safety through other means that the
 
 The invariant violated in the broken code: **`unsafe impl Send` asserts thread safety to the compiler; if the assertion is false, you introduce data races that Rust is designed to prevent.**
 
+## ⚠️ Caution
+
+- `unsafe impl Send` or `Sync` for a type that is not actually thread-safe causes undefined behavior. The compiler trusts your promise completely.
+- If a type contains non-Send fields (like raw pointers), you must ensure all access is properly synchronized before marking it Send.
+
+## 💡 Tips
+
+- The correct approach is usually to make the type genuinely thread-safe (e.g., using atomics) rather than lying to the compiler with `unsafe impl`.
+- Most types automatically implement `Send` and `Sync`. If yours does not, investigate why — the compiler usually has a good reason.
+- Use `PhantomData<*const ()>` to explicitly opt out of `Send`/`Sync` for a type.
+
 ## Compiler Error Interpretation
 
 The broken version compiles without errors -- because the `unsafe impl Send` silences the compiler's safety checks. If you remove the `unsafe impl Send` line, you get:

@@ -153,6 +153,17 @@ This is the fundamental principle of WASM sandboxing: the module is pure computa
 
 The invariant violated in the broken code: **a sandboxed module must receive all its capabilities explicitly; it cannot be constructed with missing dependencies.**
 
+## ⚠️ Caution
+
+- WASM is deterministic only if all imports are deterministic. Importing host functions like `random()` or `clock()` introduces non-determinism. Design sandbox APIs carefully.
+- A sandbox that provides too many capabilities is no longer a sandbox. Follow the principle of least privilege.
+
+## 💡 Tips
+
+- Model WASM sandbox capabilities as Rust trait bounds — functions can only use what is injected.
+- Use fake/mock implementations for testing deterministic behavior.
+- Capability-based design maps naturally to Rust's type system.
+
 ## Compiler Error Interpretation
 
 ```

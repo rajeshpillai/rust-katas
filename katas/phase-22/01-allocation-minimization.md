@@ -139,6 +139,17 @@ The host calls `init` once to set up the buffer, then calls `process` repeatedly
 
 The invariant violated in the broken code: **in WASM, allocate buffers once and reuse them across calls; repeated allocation of same-sized buffers wastes time and fragments linear memory.**
 
+## ⚠️ Caution
+
+- `static mut` is unsafe and not thread-safe. In single-threaded WASM it is acceptable, but document why.
+- `Vec::clear()` preserves capacity but drops all elements. If elements have expensive `Drop` implementations, clear is not "free."
+
+## 💡 Tips
+
+- Pre-allocate buffers at module initialization and reuse them across calls with `clear()`.
+- Use `Vec::with_capacity()` to avoid reallocations when the expected size is known.
+- Measure allocation counts with a custom allocator in tests.
+
 ## Compiler Error Interpretation
 
 ```

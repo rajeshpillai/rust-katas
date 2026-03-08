@@ -143,6 +143,17 @@ struct Fibonacci {
 
 When `RefCell` feels wrong, consider whether your design can be restructured to use normal borrowing. `RefCell` is a sign that your ownership model is more complex than Rust's default -- sometimes that is necessary, sometimes it signals a design issue.
 
+## ⚠️ Caution
+
+- `RefCell` panics at runtime if you violate the borrowing rules (e.g., two active `borrow_mut()` calls). This moves the safety check from compile time to runtime — use it sparingly.
+- `borrow()` and `borrow_mut()` return guard types (`Ref` and `RefMut`). The borrow is active as long as the guard is alive. Dropping the guard releases the borrow.
+
+## 💡 Tips
+
+- Keep `RefCell` borrow scopes as short as possible to avoid runtime panics.
+- Use `try_borrow()` and `try_borrow_mut()` if you want to handle borrow conflicts gracefully instead of panicking.
+- The pattern `Rc<RefCell<T>>` gives you shared mutable state — use it when the borrow checker is too restrictive for your data structure.
+
 ## Compiler Error Interpretation
 
 ```

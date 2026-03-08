@@ -39,6 +39,17 @@ In Rust, variables are immutable by default. The binding `let x = 5` creates a v
 
 To allow reassignment, you must explicitly declare the variable as mutable with `let mut x = 5`. This forces you to acknowledge that this value will change, making your intent clear to both the compiler and future readers.
 
+## ⚠️ Caution
+
+- **`mut` on bindings vs `mut` on references are different things.** `let mut x` means you can reassign `x`. `&mut x` means you have a mutable reference. Do not confuse the two — they operate at different levels.
+- **Immutable does not mean constant.** `let x = 5` is immutable but not a compile-time constant. Use `const` for values that must be known at compile time and `static` for global lifetimes.
+
+## 💡 Tips
+
+- Start every variable as immutable. Only add `mut` when the compiler tells you it is needed. This keeps your code easier to reason about.
+- If you find yourself adding `mut` to many variables, consider whether you can restructure with shadowing (`let x = ...` again) or functional patterns instead.
+- Use `rustc --explain E0384` in your terminal to read the full explanation of any error code.
+
 ## Compiler Error Interpretation
 
 ```

@@ -60,6 +60,17 @@ The correct version uses separate scopes so the two mutable borrows never overla
 
 You might wonder: "But this is all single-threaded code. Why does it matter?" The answer is that the same aliasing bugs that cause data races in concurrent code also cause bugs in single-threaded code. Consider a simpler example: if you hold a mutable reference to a `Vec` and also an index into that `Vec`, pushing a new element might reallocate the underlying buffer, invalidating the index. Rust's rule prevents this entire category of bugs, regardless of threading.
 
+## ⚠️ Caution
+
+- **The "one mutable reference" rule applies even in single-threaded code.** It prevents aliasing bugs like iterator invalidation, not just data races. Do not think of it as a threading restriction.
+- **Holding a mutable reference prevents ALL other access** — not just other mutable references, but immutable references too. The mutable reference has exclusive access.
+
+## 💡 Tips
+
+- If you need to perform multiple mutations, do them through the same `&mut` reference rather than creating multiple mutable references.
+- Use scoping blocks `{ }` to limit the lifetime of a mutable borrow when you need to alternate between reading and writing.
+- With NLL (Non-Lexical Lifetimes), a mutable borrow ends at its last use, not at the end of the block. You will explore this in the next kata.
+
 ## Compiler Error Interpretation
 
 ```

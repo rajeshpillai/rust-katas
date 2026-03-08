@@ -161,6 +161,17 @@ Both approaches work, but `From` impls are more ergonomic when you use `?` frequ
 | Implement `Debug` (derive it) | Enable developer-friendly debugging |
 | Implement `From` for each source | Enable the `?` operator |
 
+## ⚠️ Caution
+
+- Boilerplate for custom error types grows quickly with many variants. Consider using the `thiserror` crate to derive `Display` and `From` impls automatically.
+- Always implement `std::error::Error` for your custom error type so it works with `Box<dyn Error>` and error chains.
+
+## 💡 Tips
+
+- Name error enums after the module or operation: `ParseError`, `ConfigError`, not generic `MyError`.
+- Include relevant context in error variants (e.g., the invalid value, the expected range) to make errors actionable.
+- Use `map_err()` when you need to add context during error conversion.
+
 ## Compiler Error Interpretation
 
 If you tried to use `?` without a unified error type:

@@ -132,6 +132,17 @@ The `wasm-bindgen` tool generates glue code that tracks allocations and automati
 
 The invariant violated in the broken code: **every `Box::into_raw` must be paired with exactly one `Box::from_raw` to prevent memory leaks.**
 
+## ⚠️ Caution
+
+- Every `Box::into_raw` must be paired with exactly one `Box::from_raw`. Forgetting `from_raw` leaks memory; calling it twice causes double-free (undefined behavior).
+- `ManuallyDrop` prevents automatic drop but you must remember to manually drop it — the compiler will not remind you.
+
+## 💡 Tips
+
+- Prefer `wasm-bindgen`'s automatic pointers over manual `into_raw`/`from_raw` when working in browser WASM.
+- Use allocation tracking (counting allocs/deallocs) in tests to detect leaks.
+- Document the ownership contract for every raw pointer: "caller must free" or "callee frees."
+
 ## Compiler Error Interpretation
 
 ```

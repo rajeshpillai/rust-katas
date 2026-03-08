@@ -188,6 +188,17 @@ In the correct version, `WasmModule<Filesystem>` has `read_file` but not `connec
 
 The invariant violated in the broken code: **security should be structural (unauthorized operations do not exist) rather than checked (operations exist but are guarded by runtime conditions).**
 
+## ⚠️ Caution
+
+- WASM is not a silver bullet for security. Side-channel attacks, speculative execution bugs, and host API vulnerabilities can still exist.
+- WASM's sandbox is only as strong as its host implementation. Bugs in the WASM runtime can compromise isolation.
+
+## 💡 Tips
+
+- WASM provides structural security (denied by default); containers provide isolation (allowed then restricted). Different threat models suit different approaches.
+- Use WASM for fine-grained sandboxing of untrusted code within a process. Use containers for coarse-grained isolation between services.
+- Defense in depth: combine WASM sandboxing with container isolation.
+
 ## Compiler Error Interpretation
 
 ```

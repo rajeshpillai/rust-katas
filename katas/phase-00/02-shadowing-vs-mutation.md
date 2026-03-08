@@ -42,6 +42,17 @@ Shadowing (`let x = ...` again) creates an entirely new variable that happens to
 
 This distinction matters: shadowing is about *rebinding a name*, mutation is about *changing a value*. Rust keeps these concepts separate because conflating them is a source of bugs in other languages.
 
+## ⚠️ Caution
+
+- **Shadowing can hide variables silently.** If you shadow a variable by accident, the original becomes permanently inaccessible in that scope. The compiler will not warn you. Name your shadowed variables deliberately.
+- **Shadowing inside a block does not affect the outer scope.** A `let x` inside `{ ... }` creates a new binding that disappears when the block ends. The outer `x` remains unchanged.
+
+## 💡 Tips
+
+- Use shadowing for type transformations in a pipeline: `let input = "42"; let input = input.parse::<i32>().unwrap();` — this keeps the name meaningful while changing the type.
+- Prefer shadowing over `mut` when you only need to transform a value once. Shadowing communicates "this is a new value" rather than "this value changes over time."
+- If you find shadowing confusing in a function, it is a sign the function may be doing too much.
+
 ## Compiler Error Interpretation
 
 ```

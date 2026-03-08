@@ -190,6 +190,17 @@ The correct version can use `TestHost` to verify behavior without a browser. The
 
 The invariant violated in the broken code: **WASM modules cannot access browser APIs directly; all external interaction must go through imported host functions.**
 
+## ⚠️ Caution
+
+- WASM has no access to browser APIs (DOM, fetch, localStorage) without host-provided imports. Direct access is impossible by design.
+- `wasm-bindgen` and `web_sys` provide DOM access but add bridge overhead. Use them sparingly for performance-sensitive paths.
+
+## 💡 Tips
+
+- Return data from WASM and let JavaScript handle DOM updates. This keeps the WASM module portable.
+- Use the "command pattern": WASM returns a list of DOM operations, JavaScript executes them in a batch.
+- Test WASM modules with a mock host that records operations instead of executing them.
+
 ## Compiler Error Interpretation
 
 ```

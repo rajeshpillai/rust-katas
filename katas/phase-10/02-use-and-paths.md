@@ -103,6 +103,17 @@ use crate::network::{server, client};
 
 A common mistake is to confuse the file-system layout with the module tree. The module tree is defined by `mod` declarations, not by file names. A file only becomes part of the module tree when a parent declares it with `mod filename;`.
 
+## ⚠️ Caution
+
+- Confusing file layout with the module tree is a common mistake. The file `foo/bar.rs` is module `foo::bar`, but only if `foo/mod.rs` (or `foo.rs`) declares `mod bar`.
+- Re-exporting with `pub use` can create confusing APIs if overused. Use it for convenience aliases, not to hide module structure.
+
+## 💡 Tips
+
+- Use `crate::` for absolute paths within your crate, `super::` for relative paths to the parent module.
+- Group imports: `use std::collections::{HashMap, HashSet};`.
+- Rename imports with `as` to avoid name conflicts: `use std::fmt::Result as FmtResult`.
+
 ## Compiler Error Interpretation
 
 ```

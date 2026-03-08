@@ -237,6 +237,17 @@ A reader that only checks `version` must know the exact size of every version. A
 
 The invariant violated in the broken code: **binary protocols between modules must be self-describing; include version and header size so readers can adapt to different protocol versions without corruption.**
 
+## ⚠️ Caution
+
+- Binary protocol corruption is silent — there is no runtime error until you try to interpret garbage data. Always include checksums or magic numbers for validation.
+- Versioned headers must be read first and validated before interpreting any subsequent fields. Reading fields before checking the version is a protocol violation.
+
+## 💡 Tips
+
+- Use the pattern: magic number -> version -> size -> payload for every binary protocol.
+- Test with corrupted inputs (wrong version, truncated data, invalid offsets) to verify error handling.
+- Study real protocols: ELF headers, Protocol Buffers wire format, WASI snapshot versions.
+
 ## Compiler Error Interpretation
 
 ```

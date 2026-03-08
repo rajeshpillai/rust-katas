@@ -133,6 +133,17 @@ struct Miles(f64);
 
 The Mars Climate Orbiter was lost in 1999 because one team used Imperial units and another used metric. Both were floating-point numbers. A newtype pattern would have caught this at compile time.
 
+## ⚠️ Caution
+
+- Newtypes do not derive arithmetic traits by default. `Meters(1.0) + Meters(2.0)` will not compile unless you implement `Add`. This is intentional — not all units should be addable.
+- Avoid implementing `Deref` on newtypes to expose the inner type — it weakens the type safety you created the newtype to provide.
+
+## 💡 Tips
+
+- Use `struct TypeName(InnerType);` for zero-cost type safety. The newtype is erased at compile time.
+- Selectively derive only the traits that make semantic sense. `Meters` should derive `PartialEq` but probably not `Hash`.
+- Add a `.value()` or `.into_inner()` method for controlled access to the wrapped value.
+
 ## Compiler Error Interpretation
 
 When you try to pass arguments in the wrong order with newtypes:

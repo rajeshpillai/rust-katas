@@ -96,6 +96,17 @@ Key facts about `Rc<T>`:
 
 The function `Rc::strong_count()` returns the current reference count. In the correct version, after creating both `list_b` and `list_c`, the count for `list_a` is 3: one for `list_a` itself, one for `list_b`'s reference, and one for `list_c`'s reference.
 
+## ⚠️ Caution
+
+- `Rc` reference cycles cause memory leaks. If A holds `Rc<B>` and B holds `Rc<A>`, neither will ever be dropped. Use `Weak` to break cycles.
+- `Rc` is NOT thread-safe. Using `Rc` across threads will not compile — use `Arc` instead.
+
+## 💡 Tips
+
+- Use `Rc::clone(&value)` instead of `value.clone()` to make it clear you are incrementing the reference count, not deep-cloning the data.
+- Combine `Rc` with `RefCell` for shared mutable access: `Rc<RefCell<T>>`.
+- Check the reference count with `Rc::strong_count()` during debugging.
+
 ## Compiler Error Interpretation
 
 ```

@@ -68,6 +68,16 @@ The compiler does not create three intermediate collections. It fuses all the op
 
 Note the double reference `&&x` in the filter closure. When you call `.iter()` on a `Vec<i32>`, you get an iterator over `&i32`. The `filter` method then passes a reference to each item, so your closure receives `&&i32`. The pattern `&&x` destructures both layers of reference to give you a plain `i32` to work with.
 
+## ⚠️ Caution
+
+- Forgetting `.collect()` at the end of an iterator chain means nothing happens — iterators are lazy. The compiler will warn about an unused `Map` or `Filter` value.
+- The `&&x` double-reference pattern in closures with `.filter()` on `.iter()` surprises beginners — `.iter()` yields `&T`, and `.filter()` takes `&&T`.
+
+## 💡 Tips
+
+- Chain `.map()` and `.filter()` freely — each adapter adds zero allocation overhead. The entire chain compiles to a single loop.
+- Use `.inspect(|x| println!("{:?}", x))` between chain steps for debugging without changing the pipeline.
+
 ## Compiler Error Interpretation
 
 ```

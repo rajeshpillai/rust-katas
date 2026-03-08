@@ -184,6 +184,17 @@ The correct version starts `next_id` at 1 so that handle `0` can serve as a "nul
 
 The invariant violated in the broken code: **resource handles must be stable across mutations; removing one resource must not invalidate handles to other resources.**
 
+## ⚠️ Caution
+
+- Handle IDs wrapping around after u32::MAX allocations can cause handle reuse and security issues. Start IDs at 1 and consider generation counters.
+- Leaking handles (creating without destroying) exhausts the handle space over time.
+
+## 💡 Tips
+
+- Use opaque integer handles (not pointers) for WASM API resources.
+- Start handle IDs at 1 so that 0 can serve as a "null handle."
+- Study real-world handle-based APIs: WASI file descriptors, WebGPU handles, wasm-bindgen slab tables.
+
 ## Compiler Error Interpretation
 
 ```

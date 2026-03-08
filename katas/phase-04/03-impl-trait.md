@@ -139,6 +139,16 @@ fn get_pet(likes_dogs: bool) -> Pet {
 
 This avoids heap allocation entirely and keeps static dispatch, but requires knowing all variants at compile time.
 
+## ⚠️ Caution
+
+- `impl Trait` in return position means the function returns ONE concrete type, not different types conditionally. If you need different types, use `Box<dyn Trait>` or an enum.
+- `impl Trait` in argument position is different from `dyn Trait` — each call is monomorphized, so the compiler generates separate code for each type.
+
+## 💡 Tips
+
+- Use `impl Trait` in return position to hide complex iterator or closure types from the API.
+- When you get E0308 "expected X, found Y" with two impl-Trait types, wrap variants in an enum or use `Box<dyn Trait>`.
+
 ## Compiler Error Interpretation
 
 ```

@@ -255,6 +255,17 @@ Each WASM module has its own linear memory. Module A's linear memory is a comple
 
 The invariant violated in the broken code: **plugins must be isolated from each other's memory; the runtime must enforce non-overlapping, bounds-checked memory regions.**
 
+## ⚠️ Caution
+
+- The `unsafe` block for `std::slice::from_raw_parts_mut` requires that the pointer is valid, aligned, and the memory is not aliased. Document these invariants with a `// SAFETY:` comment.
+- Memory isolation between plugins must be enforced by the host, not trusted from the plugin side. A malicious plugin will violate any convention-based boundary.
+
+## 💡 Tips
+
+- Give each plugin its own memory region with bounds-checked access.
+- Use the `MemorySlice` pattern (base + length) to represent plugin memory regions.
+- Integration-test plugins in isolation to verify they respect memory boundaries.
+
 ## Compiler Error Interpretation
 
 ```

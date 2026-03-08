@@ -168,6 +168,17 @@ The TDD workflow in Rust:
 
 Notice that `todo!()` is different from returning a wrong value. `todo!()` panics, which means every test fails loudly. If you had written `return 0;` as a placeholder, the empty-string test would pass but others would fail with confusing assertion errors. `todo!()` makes the failure mode clear: "this is not implemented yet."
 
+## ⚠️ Caution
+
+- `todo!()` and `unimplemented!()` both panic when reached. They are for development only — never leave them in production code.
+- A test that passes without exercising the code under test gives false confidence. Always verify your test fails first (red phase of TDD).
+
+## 💡 Tips
+
+- Follow the red-green-refactor cycle: write a failing test, make it pass with minimal code, then improve the code.
+- Use `assert_eq!(actual, expected)` over `assert!(actual == expected)` — it shows both values on failure.
+- Name tests descriptively: `test_empty_input_returns_none` is better than `test1`.
+
 ## Compiler Error Interpretation
 
 ```

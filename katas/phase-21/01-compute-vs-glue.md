@@ -121,6 +121,17 @@ A pure computation kernel is also easier to test (no mocking needed), easier to 
 
 The invariant violated in the broken code: **WASM modules should be pure computation kernels; I/O and display should happen on the host side, outside the hot path.**
 
+## ⚠️ Caution
+
+- Moving computation to WASM only helps if the computation is CPU-bound. I/O-bound work (network, disk) gains nothing from WASM — keep it in the host.
+- Every WASM call has overhead (context switch, validation). Micro-operations in WASM can be slower than equivalent JavaScript.
+
+## 💡 Tips
+
+- Profile before moving code to WASM. Only move hot compute paths where the overhead is amortized by the computation.
+- Keep WASM modules focused: pure computation in, results out. No I/O, no DOM, no system calls.
+- Batch data processing in WASM to minimize boundary crossings.
+
 ## Compiler Error Interpretation
 
 ```

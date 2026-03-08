@@ -48,6 +48,17 @@ Compare this with `i32`: if you write `let x = 5; let y = x;`, both `x` and `y` 
 
 This is the first and most important ownership rule: **each value has exactly one owner, and when ownership moves, the old owner is gone.**
 
+## ⚠️ Caution
+
+- **Not all types move.** Primitive types (`i32`, `f64`, `bool`, `char`) and references implement `Copy` and are duplicated on assignment — they do not move. Assuming everything moves is a common beginner mistake.
+- **A moved value is not "destroyed."** The data still exists in memory; the compiler simply prevents you from accessing it through the old variable. The new owner will drop it when it goes out of scope.
+
+## 💡 Tips
+
+- When the compiler suggests `.clone()`, pause and ask: "Do I actually need two copies, or can I restructure to avoid the move?" Borrowing (Phase 2) often eliminates the need entirely.
+- You can check whether a type implements `Copy` by looking at its documentation or trying to use it after assignment — the compiler will tell you immediately.
+- Think of moves as "giving away your only key." You can make a copy of the key first (`.clone()`), or you can hand it out temporarily (borrowing, Phase 2).
+
 ## Compiler Error Interpretation
 
 ```

@@ -131,6 +131,17 @@ This is where Rust's ownership model shines for WASM. Rust's distinction between
 
 The invariant violated in the broken code: **read-only operations should use borrowed slices, not owned copies; cloning data that is only read wastes memory and time.**
 
+## ⚠️ Caution
+
+- Zero-copy only works when the reader does not outlive the writer. If WASM memory is resized, existing slices are invalidated.
+- Borrowing from WASM linear memory requires `unsafe` — you are trusting that the memory is valid and properly aligned.
+
+## 💡 Tips
+
+- Use `&[u8]` slices for read-only processing of WASM memory to avoid copying.
+- Copy data when the WASM module may modify it concurrently or when the data needs to outlive the current operation.
+- Map Rust's owned/borrowed duality to WASM: owned = copied out, borrowed = viewed in-place.
+
 ## Compiler Error Interpretation
 
 ```

@@ -164,6 +164,16 @@ WASM's bounds checking is what makes it safe to run untrusted code. A WASM modul
 
 The invariant violated in the broken code: **every memory access must be bounds-checked; out-of-bounds access must trap (fail safely), never cause undefined behavior.**
 
+## ⚠️ Caution
+
+- In real WASM, out-of-bounds access traps (deterministic abort), unlike C where it is undefined behavior. Your Rust simulation should mirror this with explicit bounds checks, not panics.
+- WASM memory grows in 64KB pages. You cannot shrink memory once grown — only grow it.
+
+## 💡 Tips
+
+- Always bounds-check before accessing linear memory: `if offset + size > memory.len() { trap(); }`.
+- Use `memory.grow(pages)` to request more memory — it returns the previous size or -1 on failure.
+
 ## Compiler Error Interpretation
 
 ```

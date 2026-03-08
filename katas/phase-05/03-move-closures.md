@@ -111,6 +111,17 @@ In `make_counter`, the closure mutates `count`, so it implements `FnMut`.
 2. The closure almost always needs `move` (because it must outlive the function).
 3. The specific `Fn` trait depends on what the closure does with its captures.
 
+## ⚠️ Caution
+
+- `move` closures capture ALL referenced variables by value, even if the closure only reads them. This can be unexpected if you reference variables you did not intend to move.
+- After a `move` closure captures a non-Copy value, the original variable is invalidated — just like any other move in Rust.
+
+## 💡 Tips
+
+- To move only specific variables, clone the ones you want to keep and let the closure capture the clones.
+- For shared ownership across closures and threads, use `Arc::clone()` before the `move` closure.
+- `move` determines ownership of captures; the closure body determines whether it implements `Fn`, `FnMut`, or `FnOnce`.
+
 ## Compiler Error Interpretation
 
 ```

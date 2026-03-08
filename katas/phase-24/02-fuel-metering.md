@@ -258,6 +258,17 @@ Our simplified VM uses 1 fuel per instruction, but the principle is the same.
 
 The invariant violated in the broken code: **every instruction must consume fuel before executing; without fuel checks, untrusted code can run indefinitely.**
 
+## ⚠️ Caution
+
+- Fuel costs must be calibrated for the workload. A loop that runs 10 billion iterations needs more fuel than one that runs 10. Uniform fuel costs per instruction may not reflect actual execution time.
+- Without fuel metering, untrusted WASM code can run forever (infinite loop), consuming CPU without limit.
+
+## 💡 Tips
+
+- Assign higher fuel costs to expensive operations (memory allocation, function calls) and lower costs to simple arithmetic.
+- Wasmtime's fuel metering is the production standard — use it for real WASM hosts.
+- Fuel is consumed before execution, so the module traps cleanly rather than consuming resources it should not.
+
 ## Compiler Error Interpretation
 
 The broken code does not produce a compiler error -- it compiles and runs. The problem is that it runs *forever* (or until killed):

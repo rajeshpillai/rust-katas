@@ -177,6 +177,17 @@ If the guest bypasses the sandbox (calls the allocator directly), limits are not
 
 The invariant violated in the broken code: **resource limits must be checked before allocation, not after; the sandbox must mediate all resource access.**
 
+## ⚠️ Caution
+
+- Checking resource limits after allocation is too late — the damage (OOM, excessive CPU) has already occurred. Always check BEFORE allocating.
+- Resource limits must cover ALL resources: memory, CPU, file handles, network connections. Missing one creates an escape vector.
+
+## 💡 Tips
+
+- Use the "pre-check" pattern: validate resource availability before every operation.
+- Implement a `ResourceBudget` struct that tracks usage and returns `Err` when limits are exceeded.
+- WASM runtimes like Wasmtime provide built-in fuel metering and memory limits.
+
 ## Compiler Error Interpretation
 
 ```

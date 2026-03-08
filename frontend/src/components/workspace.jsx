@@ -142,7 +142,7 @@ export default function Workspace() {
 
       {/* Spoilers */}
       <Show when={kata()}>
-        <div style={{ padding: "0 1rem 1rem", background: "var(--bg-primary)" }}>
+        <div style={{ padding: "0 1rem 1rem", background: "var(--bg-primary)", "max-height": "40%", "overflow-y": "auto", "flex-shrink": "1", "border-top": "1px solid var(--border)" }}>
           <div class="spoiler">
             <button class="spoiler-toggle" onClick={() => setShowExplanation(!showExplanation())}>
               {showExplanation() ? "\u25BC" : "\u25B6"} Explanation

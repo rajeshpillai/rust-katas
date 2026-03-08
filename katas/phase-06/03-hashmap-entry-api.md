@@ -127,6 +127,17 @@ counts
 
 **The Entry API is not just syntactic sugar.** It is a fundamental pattern for working with mutable collections in Rust. It encapsulates the "check-then-act" pattern into a single borrow scope, making it both safe and efficient (the hash is computed only once).
 
+## ⚠️ Caution
+
+- `entry()` requires an owned key (e.g., `String`, not `&str`). This means `entry(word.to_string())` allocates even for keys that already exist. For performance-critical code, check with `get()` first.
+- Calling `.get()` and then `.insert()` separately requires two lookups. The Entry API does it in one.
+
+## 💡 Tips
+
+- Use `or_insert_with(|| expensive_default())` for lazy initialization — the closure only runs if the key is absent.
+- Chain `and_modify(|v| *v += 1).or_insert(1)` for the common "increment or initialize" pattern.
+- The Entry API is the idiomatic way to handle "get or create" in Rust.
+
 ## Compiler Error Interpretation
 
 ```

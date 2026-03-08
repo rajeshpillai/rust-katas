@@ -52,6 +52,17 @@ The correct approach is to propagate the `Option` through your return type and l
 
 This is a core Rust principle: **acknowledge absence explicitly**. There is no null pointer, no undefined, no silent failure. If a value might not exist, the type system encodes that fact.
 
+## ⚠️ Caution
+
+- **`unwrap()` will panic at runtime if the value is `None`.** Never use `unwrap()` in production code unless you can mathematically prove the value is always `Some`. Prefer `match`, `if let`, or the `?` operator.
+- **`Option` and `Result` are different types.** You cannot use `?` on an `Option` inside a function that returns `Result` (or vice versa) without converting first. Use `.ok_or()` to convert `Option` to `Result`.
+
+## 💡 Tips
+
+- Use `if let Some(value) = option` when you only care about the `Some` case and want to ignore `None`.
+- Chain combinators like `.map()`, `.and_then()`, and `.unwrap_or()` for concise handling: `find_user(id).map(|u| u.name).unwrap_or("unknown".to_string())`.
+- The `?` operator is the idiomatic way to propagate errors — you will learn it in Phase 8.
+
 ## Compiler Error Interpretation
 
 ```

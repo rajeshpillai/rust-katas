@@ -152,6 +152,16 @@ trait Cloneable {
 
 This lets the trait be used as `dyn Cloneable`, but only the `describe` method is available through the trait object.
 
+## ⚠️ Caution
+
+- Dynamic dispatch has a runtime cost: vtable indirection prevents inlining and adds a pointer dereference per call. Use it when flexibility outweighs performance.
+- Not all traits are object-safe. Traits with generic methods or methods that return `Self` cannot be used as `dyn Trait` without workarounds.
+
+## 💡 Tips
+
+- Use the `where Self: Sized` bound on individual methods to keep a trait mostly object-safe while excluding problematic methods.
+- Prefer static dispatch (generics) for hot paths and dynamic dispatch for plugin-like systems or heterogeneous collections.
+
 ## Compiler Error Interpretation
 
 ```

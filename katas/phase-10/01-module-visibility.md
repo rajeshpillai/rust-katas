@@ -110,6 +110,17 @@ Other visibility modifiers include `pub(super)` (visible to the parent module) a
 
 The key design principle: **make the minimal surface area public.** Every `pub` item is a commitment -- changing it later may break downstream code.
 
+## ⚠️ Caution
+
+- Making too much `pub` weakens encapsulation. Start with everything private and only make items public when needed.
+- `pub` struct with private fields cannot be constructed outside its module — this is intentional for enforcing invariants, but surprises beginners.
+
+## 💡 Tips
+
+- Use `pub(crate)` for items that should be accessible within the crate but not to external users.
+- `pub(super)` limits visibility to the parent module — useful for internal helpers.
+- Visibility is Rust's way of enforcing API boundaries at compile time.
+
 ## Compiler Error Interpretation
 
 ```

@@ -70,6 +70,17 @@ Notice that `prefix` does not need `'a` — it has its own anonymous lifetime. T
 
 Understanding elision rules has a practical benefit: when you see a function signature without lifetime annotations and it compiles, you know exactly what relationships the compiler inferred. And when you see explicit annotations, you know the elision rules were not sufficient and the programmer had to clarify the relationships manually.
 
+## ⚠️ Caution
+
+- **The compiler's lifetime suggestion may be overly broad.** When elision fails, `rustc` often suggests tying all references to the same lifetime `'a`. This compiles but is more restrictive than necessary. Only connect lifetimes that actually relate.
+- **Elision on methods always ties the output to `&self`.** This is usually correct, but if a method returns a reference from another parameter instead of `self`, you need explicit annotations.
+
+## 💡 Tips
+
+- Memorize the three elision rules — they explain why most simple functions do not need lifetime annotations. When a function does need them, you can reason about which rule failed.
+- If a function has one input reference and one output reference, you never need annotations (Rule 2 handles it).
+- Only annotate the lifetimes that are actually connected to the output. Leaving a parameter with an anonymous lifetime (`&str` instead of `&'a str`) tells the reader "this input is not related to the output."
+
 ## Compiler Error Interpretation
 
 ```

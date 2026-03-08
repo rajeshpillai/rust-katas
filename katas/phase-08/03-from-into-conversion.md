@@ -181,6 +181,17 @@ let content = fs::read_to_string(path)
 
 This is more verbose but gives you fine-grained control at each conversion point. Use `From` when the conversion is always the same; use `map_err` when you need context-specific conversion.
 
+## ⚠️ Caution
+
+- The orphan rule applies: you can only implement `From<A> for B` if you own either `A` or `B`. You cannot implement `From<std::io::Error> for std::fmt::Error`.
+- Implementing `From` automatically gives you `Into` for free (via a blanket impl). Never implement `Into` directly.
+
+## 💡 Tips
+
+- Use `impl From<SpecificError> for MyError` to enable automatic error conversion with `?`.
+- For large error types, the `thiserror` crate generates `From` impls from `#[from]` attributes.
+- `From` conversions should be infallible. For conversions that can fail, use `TryFrom` instead.
+
 ## Compiler Error Interpretation
 
 ```

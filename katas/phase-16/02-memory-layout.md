@@ -147,6 +147,17 @@ struct MixedC {
 
 The invariant violated in the broken code: **passing a Rust struct to C without `#[repr(C)]` is undefined behavior because the memory layout is not guaranteed to match C's expectations.**
 
+## ⚠️ Caution
+
+- Rust's default struct layout is unspecified and can change between compiler versions. Never assume field order or padding without `#[repr(C)]`.
+- Layout bugs are silent — the code compiles and runs but produces wrong results. Use `std::mem::size_of` and `std::mem::offset_of!` to verify layouts.
+
+## 💡 Tips
+
+- Always use `#[repr(C)]` for structs that cross FFI boundaries.
+- Use `#[repr(transparent)]` for newtypes that must have the same layout as their inner type.
+- Tools like `cbindgen` can generate C headers from Rust types.
+
 ## Compiler Error Interpretation
 
 This kata does not produce a compiler error -- the broken version compiles and runs. The bug is that the memory layout may not match expectations. This is one of the most dangerous categories of FFI bugs: the code compiles, may appear to work on one platform or compiler version, and silently produces wrong results on another.

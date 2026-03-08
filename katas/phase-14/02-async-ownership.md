@@ -142,6 +142,17 @@ This works because `temp` is not dropped until after the `.await` completes.
 
 The invariant violated in the broken code: **a future that borrows data must not outlive that data; either own the data or ensure the borrow does not span the future's lifetime.**
 
+## ⚠️ Caution
+
+- References across `.await` points are problematic because the future may be suspended and resumed later, possibly on a different thread. The referenced data must remain valid for the entire duration.
+- Moving values into async blocks with `move` follows the same rules as regular closures — the original variable is invalidated.
+
+## 💡 Tips
+
+- Clone data before passing to async blocks when you need it in multiple places.
+- When the borrow checker rejects references across `.await`, restructure to use owned data or `Arc`.
+- The compiler's error messages for async lifetime issues are improving but still complex — focus on understanding what data must outlive the future.
+
 ## Compiler Error Interpretation
 
 ```

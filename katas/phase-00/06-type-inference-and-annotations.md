@@ -58,6 +58,17 @@ The key insight is that Rust's type inference works both forward and backward. W
 
 Type inference is not a convenience feature — it is integral to how Rust works with generics. Understanding when it needs help will save you time and frustration.
 
+## ⚠️ Caution
+
+- **Do not over-annotate.** Adding types everywhere makes code harder to read and defeats the purpose of inference. Only annotate when the compiler asks or when it improves clarity.
+- **`parse().unwrap()` hides two potential failures.** The parse can fail (wrong format) and the unwrap can panic. In production code, handle the `Result` from `parse()` explicitly.
+
+## 💡 Tips
+
+- Use `_` as a partial type hint: `Vec<_>` tells the compiler "I want a Vec, figure out the element type yourself." This works in many contexts.
+- The turbofish `::<Type>` goes on the method, not the variable: `.collect::<Vec<i32>>()`, not `collect<Vec<i32>>()`.
+- When the compiler says "type annotations needed," start by annotating the `let` binding — that usually resolves everything due to bidirectional inference.
+
 ## Compiler Error Interpretation
 
 ```

@@ -59,6 +59,17 @@ Notice that the original `name` variable in `main` must be declared `let mut` �
 
 Also notice that after `add_greeting` returns, `name` is still usable in `main`. This is the whole point of borrowing: the function accessed the data temporarily without taking ownership. Unlike the ownership transfer patterns from Phase 1, no `.clone()` is needed, and no ownership is consumed.
 
+## ⚠️ Caution
+
+- **`&String` and `&str` are different.** In function parameters, prefer `&str` over `&String` — it accepts both `String` and `&str` as arguments, making your API more flexible. `&String` forces callers to own a `String`.
+- **The entire mutability chain must be explicit.** To create `&mut T`, the variable itself must be `let mut`, and the call site must pass `&mut`. If any link in the chain is missing, the compiler will reject it.
+
+## 💡 Tips
+
+- Use `&T` parameters for functions that only need to read data. This is the most common pattern in Rust and avoids unnecessary ownership transfer or cloning.
+- Multiple immutable borrows (`&T`) can coexist — this is safe because no one is modifying the data. This enables efficient shared access without copying.
+- When the compiler says "cannot borrow as mutable," check: is the variable `let mut`? Is the reference `&mut`? Both are required.
+
 ## Compiler Error Interpretation
 
 ```

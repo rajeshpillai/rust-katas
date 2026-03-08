@@ -189,6 +189,17 @@ let value: Option<T> = result.ok();
 
 **The golden rule:** Library code should be a good citizen. It should inform the caller of errors, not make unilateral decisions about what to do. Let the caller decide. Return values, not panics.
 
+## ⚠️ Caution
+
+- `expect("message")` should explain why the value should always be present, not what happens if it is absent. Write `expect("config file was validated at startup")` not `expect("failed to read config")`.
+- Library code should almost never panic. Return `Result` and let the caller decide how to handle errors.
+
+## 💡 Tips
+
+- Enable the clippy lint `#[deny(clippy::unwrap_used)]` to catch accidental unwraps in production code.
+- Use `unwrap()` freely in tests — panicking is the correct behavior when a test assertion fails.
+- `todo!()` and `unimplemented!()` are acceptable panics during development but must be removed before release.
+
 ## Compiler Error Interpretation
 
 The broken version compiles without errors — panics are legal Rust code. This is a **design** problem, not a syntax problem. The compiler will not warn you about `unwrap()` in library code (though the `clippy` linter will, with the `clippy::unwrap_used` lint).

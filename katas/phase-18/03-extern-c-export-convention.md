@@ -160,6 +160,17 @@ Three attributes work together: `#[no_mangle]` for the name, `extern "C"` for th
 
 The invariant violated in the broken code: **WASM-exported functions must use `#[no_mangle]` to preserve their name in the export table, so the host can find them.**
 
+## ⚠️ Caution
+
+- `#[no_mangle]` places the symbol in the global namespace. Two modules with the same `#[no_mangle]` function name will conflict at link time.
+- Forgetting `extern "C"` means Rust uses its own (unstable) calling convention, which will not work for WASM exports or C interop.
+
+## 💡 Tips
+
+- Always use the three-attribute pattern together: `#[no_mangle]`, `extern "C"`, and `pub`. Missing any one causes subtle issues.
+- Use `#[export_name = "custom_name"]` instead of `#[no_mangle]` when you want a specific export name that differs from the Rust function name.
+- Only use WASM-compatible types (i32, i64, f32, f64) in exported function signatures.
+
 ## Compiler Error Interpretation
 
 ```

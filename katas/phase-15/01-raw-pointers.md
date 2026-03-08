@@ -84,6 +84,17 @@ This is not enforced by the compiler, but it is essential for code review and ma
 
 The invariant violated in the broken code: **dereferencing a raw pointer requires an `unsafe` block because the compiler cannot verify the pointer is valid.**
 
+## ⚠️ Caution
+
+- Dereferencing a raw pointer is undefined behavior if the pointer is null, dangling, or misaligned. The compiler cannot protect you inside `unsafe` blocks.
+- Creating a raw pointer is safe; only dereferencing it requires `unsafe`. This distinction is important — `let p = &x as *const i32` is always safe.
+
+## 💡 Tips
+
+- Always add a `// SAFETY:` comment above every `unsafe` block explaining why the invariants are upheld. This is a Rust community convention.
+- Minimize the scope of `unsafe` blocks — keep them as small as possible and wrap them in safe abstractions.
+- Use `NonNull<T>` instead of `*mut T` when you can guarantee the pointer is non-null.
+
 ## Compiler Error Interpretation
 
 ```

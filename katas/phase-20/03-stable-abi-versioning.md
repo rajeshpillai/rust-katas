@@ -179,6 +179,17 @@ WASM modules are often independently deployable. A host might run modules compil
 
 The invariant violated in the broken code: **binary protocols that cross module boundaries must include version and size information so readers can handle different versions without corruption.**
 
+## ⚠️ Caution
+
+- Reserved fields in versioned headers only help if readers check the version before interpreting the struct. Without version checks, reserved fields provide no safety.
+- Changing field alignment in a versioned struct is an ABI break even if the version number is bumped — older readers may access misaligned data.
+
+## 💡 Tips
+
+- Include version + size in every binary protocol header so readers can skip unknown fields.
+- Add reserved fields for future expansion — they cost nothing and prevent ABI breaks.
+- Study real-world examples: WASI, Protocol Buffers, ELF headers.
+
 ## Compiler Error Interpretation
 
 ```

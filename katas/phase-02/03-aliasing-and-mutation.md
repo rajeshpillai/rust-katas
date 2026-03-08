@@ -59,6 +59,17 @@ Alternative fixes include:
 
 The underlying principle is: **aliasing (reading through a reference) and mutation (writing through a reference) cannot coexist.** Rust encodes time in types — the borrow checker reasons about when references are alive and ensures they never conflict.
 
+## ⚠️ Caution
+
+- **`Vec::push` can reallocate.** When a Vec exceeds its capacity, it allocates a new, larger buffer and copies all elements. Any existing references into the old buffer become dangling. This is the exact bug Rust prevents.
+- **This bug causes real crashes in C/C++.** Iterator invalidation is one of the most common memory safety bugs in systems programming. In Java, it throws `ConcurrentModificationException` at runtime. Rust catches it at compile time.
+
+## 💡 Tips
+
+- Copy the value instead of borrowing it when you need to mutate the collection afterward: `let first = items[0]` (for `Copy` types) or `let first = items[0].clone()`.
+- Reorder operations: do all mutations first, then take references. This naturally avoids overlap.
+- When the compiler says "cannot borrow as mutable because it is also borrowed as immutable," the fix is almost always to restructure the order of operations, not to restructure the data.
+
 ## Compiler Error Interpretation
 
 ```

@@ -96,6 +96,17 @@ This wrapper enforces the C function's precondition (no `i32::MIN`) at the Rust 
 
 The invariant violated in the broken code: **calling an `extern "C"` function requires `unsafe` because the compiler cannot verify the correctness of foreign code.**
 
+## ⚠️ Caution
+
+- `abs(i32::MIN)` is undefined behavior in C — the result cannot be represented as a positive i32. Always validate inputs before passing them to C functions.
+- ABI mismatches (wrong types, wrong calling convention) cause silent corruption, not compile errors. Always use `extern "C"` and match C types exactly.
+
+## 💡 Tips
+
+- Wrap every `extern` function in a safe Rust function that validates inputs and handles errors.
+- Use `libc` crate for portable C type definitions instead of guessing sizes.
+- Tools like `cbindgen` and `bindgen` automate FFI binding generation.
+
 ## Compiler Error Interpretation
 
 ```

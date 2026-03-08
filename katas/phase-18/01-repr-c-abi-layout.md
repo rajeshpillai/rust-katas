@@ -132,6 +132,17 @@ The correct version includes `_pad1` and `_pad2` fields to make the padding visi
 
 The invariant violated in the broken code: **data that crosses a module boundary must have a deterministic layout; `#[repr(C)]` is required for any struct that is serialized to raw bytes.**
 
+## ⚠️ Caution
+
+- Endianness matters when reading struct fields from linear memory across architectures. WASM uses little-endian, but the host may differ.
+- Adding a field to a `#[repr(C)]` struct changes the offsets of all subsequent fields and the overall size — this is an ABI-breaking change.
+
+## 💡 Tips
+
+- Use `std::mem::size_of::<T>()` and `std::mem::offset_of!(T, field)` to verify layout at compile time.
+- Always add explicit padding fields to `#[repr(C)]` structs to make alignment visible.
+- Use `#[repr(C, packed)]` only when you must eliminate padding — it can cause unaligned access.
+
 ## Compiler Error Interpretation
 
 ```

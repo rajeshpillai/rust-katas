@@ -203,6 +203,17 @@ In real WASM, the guest can call `memory.grow(pages)` to extend linear memory. I
 
 The invariant violated in the broken code: **an allocator must check that the requested size fits within available memory before advancing the allocation pointer.**
 
+## ⚠️ Caution
+
+- A bump allocator cannot free individual allocations. Memory is only reclaimed when the entire allocator is reset. This is fine for short-lived computations but leaks memory in long-running modules.
+- Alignment requirements are easy to forget in manual allocators. Allocations must be aligned to the type's alignment requirement.
+
+## 💡 Tips
+
+- Use `memory.grow()` only when the bump pointer exceeds the current memory size. Each grow adds 64KB.
+- For WASM modules that process one request at a time, arena/bump allocation with full reset between requests is efficient and simple.
+- Consider using `wee_alloc` for a small, WASM-optimized global allocator.
+
 ## Compiler Error Interpretation
 
 ```

@@ -156,6 +156,17 @@ Sometimes items must be processed sequentially (each depends on the previous res
 
 The invariant violated in the broken code: **minimize boundary crossings by batching work; send all data at once rather than processing items individually across the boundary.**
 
+## ⚠️ Caution
+
+- Batching only helps when operations are independent. If step N depends on the result of step N-1, you cannot batch them.
+- Very large batches can cause memory pressure — the entire input must fit in WASM linear memory. Balance batch size with memory constraints.
+
+## 💡 Tips
+
+- Aim for one boundary crossing per logical operation, not per data element.
+- Pass arrays/buffers across the boundary instead of individual values.
+- Measure the boundary crossing cost in your specific setup to determine optimal batch size.
+
 ## Compiler Error Interpretation
 
 ```

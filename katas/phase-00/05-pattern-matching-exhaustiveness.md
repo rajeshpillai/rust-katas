@@ -72,6 +72,17 @@ You have two choices when you do not want to handle every variant explicitly:
 
 The wildcard approach is convenient but has a tradeoff: if you add a new variant later, the wildcard will silently catch it, and you will not get a compiler warning. Use wildcards deliberately, not as a way to avoid thinking about cases.
 
+## ⚠️ Caution
+
+- **Wildcard `_` silently catches new variants.** If you add a variant to an enum later, a wildcard arm will handle it without warning. This defeats the refactoring safety that exhaustive matching provides. Use wildcards only when you genuinely want a catch-all.
+- **Non-exhaustive enums from external crates require `_`.** Some crates mark enums `#[non_exhaustive]`, which means new variants can be added without a major version bump. You must always include a wildcard arm for these.
+
+## 💡 Tips
+
+- When you add a new enum variant, compile immediately. The compiler will show you every `match` that needs updating — this is one of Rust's most powerful refactoring tools.
+- Use `match` over `if let` when you need to handle multiple variants. Use `if let` when you only care about one.
+- The `todo!()` macro is useful as a placeholder in match arms during development — it compiles but panics if reached.
+
 ## Compiler Error Interpretation
 
 ```

@@ -153,6 +153,17 @@ The `log_values!` macro in the correct version demonstrates three capabilities t
 
 Rule of thumb: if your macro's arms all do the same thing with different types, you want a generic function. If your macro needs to manipulate syntax, generate code, or capture call-site information, it is the right tool.
 
+## ⚠️ Caution
+
+- Macro error messages are often cryptic. When a user calls your macro incorrectly, they see errors at the expansion point, not at their call site. Generics produce much better error messages.
+- Macros cannot be imported by trait or type — they follow different scoping rules (`#[macro_export]`, `#[macro_use]`).
+
+## 💡 Tips
+
+- Use macros for: variadic arguments, DSLs, boilerplate reduction, compile-time assertions. Use generics for: polymorphism, type-safe abstractions.
+- Macros like `file!()`, `line!()`, and `stringify!()` provide compile-time information that functions cannot access.
+- If a macro could be a function, it probably should be.
+
 ## Compiler Error Interpretation
 
 ```

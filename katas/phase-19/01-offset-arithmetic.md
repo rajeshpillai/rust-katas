@@ -143,6 +143,17 @@ WASM specifies little-endian byte order for all memory operations. Our code uses
 
 The invariant violated in the broken code: **consecutive values in linear memory must not overlap; each value must occupy its own non-overlapping region of bytes.**
 
+## ⚠️ Caution
+
+- Overlapping writes in linear memory cause silent data corruption — there is no runtime error. Always calculate offsets using `size_of::<T>()` to avoid overlap.
+- Alignment requirements matter. Writing an i32 at an odd offset may work on x86 but trap on other architectures.
+
+## 💡 Tips
+
+- Use `offset = base + index * size_of::<T>()` consistently for all memory layout calculations.
+- Create a helper struct or function for offset management instead of computing offsets manually at each use site.
+- Draw a memory layout diagram when debugging offset bugs.
+
 ## Compiler Error Interpretation
 
 ```

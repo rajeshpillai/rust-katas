@@ -71,6 +71,17 @@ This is a safety guarantee: you can never have a struct with an uninitialized fi
 
 Tuple structs like `Meters(f64)` work the same way but use positional access (`.0`, `.1`, etc.) instead of named fields. They are especially useful for the newtype pattern — wrapping a single value to give it a distinct type. `Meters(100.0)` and `f64` are different types, even though the underlying data is the same.
 
+## ⚠️ Caution
+
+- **Struct update syntax (`..other`) can move fields.** If you write `let b = Color { red: 0, ..a }`, and `a` has a non-Copy field, `a` is partially moved and can no longer be used. This is a common surprise.
+- **All fields are private by default.** If you define a struct in one module and try to construct it in another, you will get a compiler error unless the fields are marked `pub`. This is intentional — use constructor functions to enforce invariants.
+
+## 💡 Tips
+
+- Derive `Debug` on every struct during development: `#[derive(Debug)]`. This lets you use `{:?}` in `println!` to inspect values.
+- Implement `Default` for structs with sensible defaults: `Color { red: 135, ..Default::default() }` is cleaner than specifying every field.
+- Use tuple structs for the newtype pattern (e.g., `struct Meters(f64)`) to get compile-time type safety at zero runtime cost.
+
 ## Compiler Error Interpretation
 
 ```

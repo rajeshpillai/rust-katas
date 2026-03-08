@@ -108,6 +108,17 @@ When should you use `Box<T>`?
 
 The `Deref` trait is implemented for `Box<T>`, so `&Box<T>` automatically coerces to `&T`. You can call methods on the inner type directly through the `Box` without manual dereferencing.
 
+## ⚠️ Caution
+
+- Do not overuse `Box` for everything — stack allocation is faster. Only box values when you need heap allocation (recursive types, trait objects, large values).
+- `Box<T>` has single ownership. If you need shared ownership, use `Rc<T>` (single-threaded) or `Arc<T>` (multi-threaded).
+
+## 💡 Tips
+
+- `Box` implements `Deref`, so you can call methods on `Box<T>` as if it were `T` directly.
+- Use `Box<dyn Trait>` for trait objects when you need dynamic dispatch.
+- Box is the simplest smart pointer — master it before moving to `Rc` and `Arc`.
+
 ## Compiler Error Interpretation
 
 ```

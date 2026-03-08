@@ -181,6 +181,17 @@ Plugin systems inherently require dynamic dispatch because the host does not kno
 
 The invariant violated in the broken code: **traits are unsized; use `Box<dyn Trait>` to store different implementations in the same collection via dynamic dispatch.**
 
+## ⚠️ Caution
+
+- `dyn Trait` is a fat pointer (data + vtable), which adds a layer of indirection. For performance-critical paths, prefer generics (static dispatch).
+- Object safety rules limit what traits can be used as `dyn Trait`. Traits with generic methods or `Self` return types are not object-safe.
+
+## 💡 Tips
+
+- Use `Box<dyn Plugin>` for plugin registries where plugins are loaded at runtime.
+- The vtable approach mirrors how WASM host functions work — function pointers to imported capabilities.
+- For static plugin systems, prefer generics over trait objects for better performance.
+
 ## Compiler Error Interpretation
 
 ```

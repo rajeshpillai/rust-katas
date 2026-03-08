@@ -161,6 +161,17 @@ The cost is zero at runtime -- the state is erased during compilation. The benef
 
 The invariant violated in the broken code: **runtime state checks can be forgotten or bypassed; encoding state in the type system makes invalid operations unrepresentable.**
 
+## ⚠️ Caution
+
+- The typestate pattern increases the number of types in your API. Each state is a separate type, which can make APIs verbose. Use it for safety-critical state machines, not simple flags.
+- Consuming transitions (taking `self`) mean the old state value cannot be reused. This is the point — but it can surprise callers who expect to keep the builder.
+
+## 💡 Tips
+
+- Use zero-sized types (`struct Open;`, `struct Closed;`) as state markers — they have no runtime cost.
+- The typestate pattern encodes state machine rules in the type system, making invalid transitions impossible at compile time.
+- Real-world uses: connection builders, file handles (open/closed), HTTP request builders.
+
 ## Compiler Error Interpretation
 
 If you try to call `send()` on the wrong state in the correct version:

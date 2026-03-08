@@ -60,6 +60,17 @@ This is the ownership system applied to concurrency: instead of relying on a gar
 
 The invariant violated in the broken code: **a spawned thread's closure must own its captured data because the thread's lifetime is independent of the spawning scope.**
 
+## ⚠️ Caution
+
+- `move` closures for threads capture ALL referenced variables. If you reference a variable you did not intend to transfer, it will be moved and unavailable in the main thread.
+- Thread closures must be `'static` — they cannot borrow data from the spawning scope. Use `move` or `Arc` for sharing.
+
+## 💡 Tips
+
+- Use `Arc::clone()` before spawning to share data across threads. Clone the Arc, then move the clone into the thread.
+- `thread::spawn` returns a `JoinHandle` — call `.join().unwrap()` to wait for the thread and propagate panics.
+- For data that only one thread needs, move it directly. For shared data, wrap in `Arc`.
+
 ## Compiler Error Interpretation
 
 ```

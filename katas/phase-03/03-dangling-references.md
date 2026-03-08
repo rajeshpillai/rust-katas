@@ -59,6 +59,17 @@ You cannot return a reference to something created inside the function, because 
 
 This rule eliminates an entire category of bugs: use-after-free, dangling pointers, and accessing deallocated memory. In C, the equivalent code would compile and run — sometimes crashing, sometimes returning garbage data, sometimes appearing to work. Rust makes this impossible.
 
+## ⚠️ Caution
+
+- **In C, this code compiles and "works" — until it doesn't.** Returning a pointer to a local variable in C is undefined behavior. It may appear to work in testing and crash in production. Rust makes this a compile-time error.
+- **`&format!(...)` is always wrong.** `format!` creates a temporary `String`. Taking a reference to it creates a reference to data that will be dropped at the end of the statement.
+
+## 💡 Tips
+
+- When the compiler says "returns a reference to data owned by the current function," the fix is almost always to return an owned type (`String` instead of `&str`, `Vec<T>` instead of `&[T]`).
+- If you want to avoid allocation, return a reference to data that was passed in: `fn first_word(s: &str) -> &str` works because the returned reference borrows from the input.
+- Remember the two ways data can escape a function: (1) return ownership, (2) return a reference to data from the caller's scope.
+
 ## Compiler Error Interpretation
 
 ```

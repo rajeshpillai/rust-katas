@@ -166,6 +166,17 @@ The type-level approach in Rust mirrors this: if `Module<CanReadFiles>` does not
 
 The invariant violated in the broken code: **security capabilities should be enforced structurally (through the type system), not through runtime checks that can be forgotten or bypassed.**
 
+## ⚠️ Caution
+
+- Runtime permission checks can be bypassed by bugs. Compile-time enforcement (through the type system) eliminates entire categories of security bugs.
+- PhantomData-based capabilities compose poorly with tuples for multiple permissions. For complex permission systems, use a dedicated type-level library.
+
+## 💡 Tips
+
+- Use zero-sized marker types (`struct CanRead;`) as phantom type parameters for compile-time permission checks.
+- The typestate pattern can encode security state transitions that are impossible to violate.
+- Real-world capability systems: WASI, CloudABI, seL4.
+
 ## Compiler Error Interpretation
 
 ```

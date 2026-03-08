@@ -51,13 +51,9 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 
 fn main() {
     let string1 = String::from("long string");
-    let result;
+    let string2 = String::from("xyz");
 
-    {
-        let string2 = String::from("xyz");
-        result = longest(string1.as_str(), string2.as_str());
-    }
-
+    let result = longest(string1.as_str(), string2.as_str());
     println!("The longest string is: {}", result);
 }
 ```
@@ -93,6 +89,17 @@ fn main() {
 This version works because both `string1` and `string2` outlive `result`.
 
 The key insight: **lifetimes are not about how long something lives. They are about what relates to what.** The annotation `'a` says "these references are connected" — and the compiler uses that connection to prevent dangling references.
+
+## ⚠️ Caution
+
+- **Lifetime annotations do not change how long values live.** They only describe relationships. Adding `'a` does not extend a value's lifetime — it tells the compiler how references are connected so it can verify safety.
+- **The return lifetime is constrained to the shortest input lifetime.** When you write `fn longest<'a>(x: &'a str, y: &'a str) -> &'a str`, the returned reference is only valid as long as both inputs are valid. If one input is dropped, the return value becomes invalid.
+
+## 💡 Tips
+
+- If a function always returns from one specific input, only annotate that input's lifetime: `fn first<'a>(s: &'a str, _prefix: &str) -> &'a str`. This gives the compiler more precise information.
+- When lifetime annotations feel confusing, ask: "which input could the return value point to?" The answer tells you which lifetimes to connect.
+- Lifetime syntax `'a` is pronounced "tick a" or "lifetime a." It is just a name — you can use `'input`, `'src`, etc. for readability.
 
 ## Compiler Error Interpretation
 

@@ -88,6 +88,17 @@ This pattern is Rust's equivalent of a "shared mutable variable" in other langua
 
 The invariant violated in the broken code: **`Rc<T>` is not `Send` because its reference count is not atomic; use `Arc<T>` for thread-safe shared ownership.**
 
+## ⚠️ Caution
+
+- Mutex poisoning occurs when a thread panics while holding a lock. Subsequent `lock()` calls return `Err`. Use `.lock().unwrap()` only when you can accept panicking on poisoned mutexes.
+- Holding a mutex lock across an `.await` point can cause deadlocks in async code. Drop the lock before awaiting.
+
+## 💡 Tips
+
+- The pattern is always `Arc<Mutex<T>>` for shared mutable state across threads. `Arc` for shared ownership, `Mutex` for interior mutability.
+- Keep lock scopes short: acquire, modify, drop. Use a block `{ let mut data = lock.lock().unwrap(); *data += 1; }` to ensure the lock is released.
+- For read-heavy workloads, consider `RwLock` instead of `Mutex`.
+
 ## Compiler Error Interpretation
 
 ```

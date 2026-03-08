@@ -75,6 +75,17 @@ At the end, only `excited` is valid. Each value has exactly one owner at any poi
 
 The correct version simply removes the `println!("{}", greeting)` line because `greeting` no longer exists when that line would execute. If you need both values, you would need to clone `greeting` before passing it to `add_exclamation`, or restructure the code to avoid the move.
 
+## ⚠️ Caution
+
+- **Ownership chains can be hard to trace in complex code.** If you lose track of which variable owns what, draw the ownership chain step by step as shown in this kata's explanation. The compiler always knows — trust its error messages.
+- **Returning a value transfers ownership to the caller.** If the caller ignores the return value, the value is dropped immediately. This is intentional but can surprise beginners.
+
+## 💡 Tips
+
+- Use `format!()` to create new Strings from existing data — it always returns an owned `String`, making ownership clear.
+- If you need to use a value after passing it to a function, you have three options: (1) clone before passing, (2) restructure so the function returns the value, (3) use borrowing (Phase 2). Option 3 is almost always the best.
+- The Rust compiler's error messages for E0382 are remarkably consistent — they always show where the move happened and where the invalid use occurred. Learn to read this pattern.
+
 ## Compiler Error Interpretation
 
 ```

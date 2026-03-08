@@ -141,6 +141,17 @@ When `cargo test` runs, it:
 
 A test passes if it returns without panicking. `assert_eq!` panics (and thus fails the test) if its two arguments are not equal. The error message shows both values, making it easy to diagnose failures.
 
+## ⚠️ Caution
+
+- Forgetting `#[test]` on a test function means it will never run — and there is no warning. This is an insidious silent failure.
+- Tests without `#[cfg(test)]` on the module are compiled into production builds, increasing binary size.
+
+## 💡 Tips
+
+- Use `use super::*` inside the test module to access all items from the parent module, including private functions.
+- Run `cargo test -- --nocapture` to see `println!` output from tests.
+- Use `#[should_panic]` for tests that verify a function panics on invalid input.
+
 ## Compiler Error Interpretation
 
 ```

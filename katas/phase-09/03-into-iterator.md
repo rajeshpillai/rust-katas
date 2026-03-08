@@ -90,6 +90,16 @@ Choose the iteration method based on what you need:
 - If you need to modify elements in place, use `.iter_mut()`.
 - If you are done with the collection and need owned values (e.g., to move them into a new structure), use `.into_iter()`.
 
+## ⚠️ Caution
+
+- `for item in collection` calls `into_iter()` and consumes the collection. You cannot use the collection after the loop. Use `for item in &collection` to borrow instead.
+- `into_iter()` on `&Vec<T>` yields `&T`, not `T`. The behavior depends on whether you call it on an owned value or a reference.
+
+## 💡 Tips
+
+- Use `&collection` in a for loop to iterate by reference, `&mut collection` to iterate by mutable reference, and `collection` to iterate by value (consuming).
+- Implement `IntoIterator` for your custom types so they work with `for` loops.
+
 ## Compiler Error Interpretation
 
 ```

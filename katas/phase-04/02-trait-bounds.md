@@ -72,6 +72,17 @@ Both forms are equivalent. The `where` clause is preferred when bounds get compl
 
 Think of trait bounds as the type-level equivalent of function preconditions. They make the requirements explicit and machine-checkable.
 
+## ⚠️ Caution
+
+- Over-constraining with too many bounds makes functions less reusable. Only require what the function actually uses.
+- Trait bounds are checked at the call site, not inside the function — if a bound is missing, the error appears where you call the function.
+
+## 💡 Tips
+
+- Use `where` clause for readability when you have multiple bounds: `where T: Display + Debug + Clone`.
+- The bound `T: Display` means "T must implement Display" — think of it as a contract the caller must satisfy.
+- Use `impl Display` in argument position as shorthand for simple cases.
+
 ## Compiler Error Interpretation
 
 ```

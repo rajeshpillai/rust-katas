@@ -72,6 +72,17 @@ Rust makes this explicit because implicit deep copies are a common source of per
 
 In Phase 2, you will learn about borrowing, which often eliminates the need to clone entirely. Borrowing lets functions read data without taking ownership. But for now, the lesson is clear: **clone is always explicit, and it always has a cost.**
 
+## ⚠️ Caution
+
+- **Do not use `.clone()` to silence the borrow checker.** This is a common anti-pattern among beginners. If the compiler complains about ownership, first consider whether borrowing can solve the problem. Clone should be a deliberate choice, not a reflex.
+- **Cloning nested structures is deep.** `Vec<String>.clone()` clones the Vec, every String inside it, and every String's heap buffer. The cost scales with the total data size, not just the container.
+
+## 💡 Tips
+
+- Clone the value that is used first, and move the original to the last consumer. This minimizes the number of clones needed.
+- If you find yourself cloning frequently, it is a sign your data flow needs restructuring. Borrowing (Phase 2) or reference counting (`Rc`/`Arc`, Phase 11) may be better.
+- `Clone` and `Copy` are different traits. `Copy` is implicit and cheap (stack-only). `Clone` is explicit and can be expensive (heap allocation). A type can implement `Clone` without implementing `Copy`.
+
 ## Compiler Error Interpretation
 
 ```

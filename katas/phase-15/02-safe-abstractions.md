@@ -105,6 +105,17 @@ By marking the function `unsafe`, you shift responsibility to the caller and mak
 
 The invariant violated in the broken code: **a safe function must not allow callers to trigger undefined behavior; returning a raw pointer from a safe function breaks this contract because the pointer can outlive the data it points to.**
 
+## ⚠️ Caution
+
+- The broken version in this kata compiles and runs without errors — the bug is silent undefined behavior (UB). This is the danger of unsafe: the compiler cannot catch your mistakes.
+- Every `unsafe` block is a promise from the programmer to the compiler. Breaking that promise does not cause a compile error — it causes unpredictable behavior at runtime.
+
+## 💡 Tips
+
+- The golden rule: unsafe code must create safe boundaries. If callers need to uphold invariants, the abstraction is not safe enough.
+- Write exhaustive tests for unsafe wrappers, including edge cases that could trigger UB (null, empty, max values).
+- Use `debug_assert!` inside unsafe code for checks that should not run in release builds.
+
 ## Compiler Error Interpretation
 
 The broken version compiles without errors -- and that is exactly the problem. The compiler trusts safe functions to uphold Rust's safety invariants. When a safe function returns a raw pointer, the compiler cannot track the pointer's validity, so the dangling dereference goes undetected.

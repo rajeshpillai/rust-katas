@@ -70,6 +70,17 @@ When should a struct hold a reference vs an owned value?
 - Use `&'a str` when the struct is a temporary view into existing data (like an excerpt, a parser token, or a search result).
 - Use `String` when the struct should own its data independently.
 
+## ⚠️ Caution
+
+- **A struct with a lifetime parameter infects everything that holds it.** If `Excerpt<'a>` is stored in another struct, that struct also needs a lifetime parameter. This "viral" nature of lifetimes is one reason to prefer owned data (`String`) in long-lived structs.
+- **Returning a struct with a reference from a function follows the same rules as returning a plain reference.** The referenced data must outlive the struct.
+
+## 💡 Tips
+
+- Use `&'a str` in structs when the struct is a short-lived view (parser tokens, iterators, search results). Use `String` when the struct owns its data independently.
+- If lifetime annotations on structs become unwieldy, consider switching to owned data or using `Cow<'a, str>` which can be either borrowed or owned.
+- Every `&` in a struct field needs a lifetime. If the struct has multiple reference fields, they can share a lifetime (if they come from the same source) or have separate lifetimes.
+
 ## Compiler Error Interpretation
 
 ```

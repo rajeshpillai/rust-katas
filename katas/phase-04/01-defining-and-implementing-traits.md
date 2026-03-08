@@ -81,6 +81,17 @@ The fix is straightforward: add the `impl Greet for User` block and provide the 
 
 Note that the trait must also be **in scope** at the call site. If `Greet` were defined in another module, you would need to `use` it before calling `user.hello()`.
 
+## ⚠️ Caution
+
+- Trait must be in scope (imported with `use`) to call its methods on a type from another crate.
+- Orphan rule: you can only implement a trait for a type if you own either the trait or the type.
+
+## 💡 Tips
+
+- Use `#[derive(...)]` for standard traits like Debug, Clone, PartialEq instead of manual impl when possible.
+- Traits can have default method implementations that types can override.
+- Use `cargo doc --open` to see which traits are implemented for any type.
+
 ## Compiler Error Interpretation
 
 ```

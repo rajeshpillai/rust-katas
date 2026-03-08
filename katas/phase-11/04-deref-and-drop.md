@@ -168,6 +168,17 @@ The `Drop` trait is how Rust implements RAII (Resource Acquisition Is Initializa
 
 Together, `Deref` and `Drop` are what make smart pointers work in Rust. `Box<T>`, `Rc<T>`, `Arc<T>`, `MutexGuard<T>`, `String`, and `Vec<T>` all implement `Deref` (so their inner values are accessible transparently) and `Drop` (so their resources are cleaned up automatically).
 
+## ⚠️ Caution
+
+- Implementing `Deref` for non-smart-pointer types is considered an anti-pattern ("Deref abuse"). It makes code confusing because method resolution becomes implicit.
+- Drop order is deterministic: fields are dropped in declaration order, variables in reverse declaration order. Relying on drop order for correctness makes code fragile.
+
+## 💡 Tips
+
+- Use `std::mem::drop(value)` to drop a value before the end of its scope — useful for releasing locks early.
+- Deref coercion chains automatically: `&Box<String>` coerces to `&String` coerces to `&str`.
+- The `Drop` trait is Rust's RAII mechanism — use it for cleanup (closing files, releasing resources).
+
 ## Compiler Error Interpretation
 
 ```

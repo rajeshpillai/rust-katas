@@ -83,6 +83,16 @@ The `move` keyword changes the capture mode: instead of borrowing `name`, the cl
 - Sending closures to other threads (`std::thread::spawn` requires `move`)
 - Any time the closure must outlive the scope where it was created
 
+## ⚠️ Caution
+
+- `move` with `Copy` types copies the value into the closure, it does not move it. The original remains usable. This surprises beginners who expect the original to be invalidated.
+- `move` captures ALL variables referenced in the closure, not just the ones you intend — this can accidentally move variables you still need.
+
+## 💡 Tips
+
+- Clone values before a `move` closure when you need to keep using them outside: `let name_clone = name.clone(); move || println!("{}", name_clone)`.
+- Use `move` closures whenever you spawn threads or return closures from functions — they must own their data.
+
 ## Compiler Error Interpretation
 
 ```

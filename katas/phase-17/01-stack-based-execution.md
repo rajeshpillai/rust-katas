@@ -160,6 +160,16 @@ Our `VmError` enum models what the WASM validator would catch. In real WASM, thi
 
 The invariant violated in the broken code: **every instruction that consumes stack values must verify the stack has enough values before popping.**
 
+## ⚠️ Caution
+
+- Using `unwrap()` on stack pops in a real VM implementation masks the real error — stack underflow. Always validate stack depth before operations.
+- WASM validation happens before execution. A module with invalid stack usage will be rejected at load time, not at runtime.
+
+## 💡 Tips
+
+- Think of WASM instructions as consuming inputs from the stack and pushing results. `i32.add` pops two values and pushes one.
+- Use Rust enums to model WASM instructions for type-safe interpretation.
+
 ## Compiler Error Interpretation
 
 ```

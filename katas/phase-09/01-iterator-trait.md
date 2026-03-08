@@ -92,6 +92,16 @@ Notice that `next()` takes `&mut self`. This is essential: the iterator must tra
 
 Once you implement `Iterator`, you get dozens of methods for free: `map`, `filter`, `fold`, `take`, `skip`, `zip`, `enumerate`, and many more. These are all default methods on the `Iterator` trait that are built on top of your single `next()` implementation. This is the power of Rust's trait system -- one method unlocks an entire algebra of transformations.
 
+## ⚠️ Caution
+
+- Iterators are consumed after use. Calling `.collect()` or `.for_each()` exhausts the iterator — you cannot iterate again without creating a new one.
+- `next()` requires `&mut self`, so you need a mutable binding to manually advance an iterator.
+
+## 💡 Tips
+
+- Implementing `Iterator` gives you dozens of free methods (map, filter, fold, etc.) — always implement it for custom sequence types.
+- Use `iter()` on collections to get a borrowing iterator that does not consume the collection.
+
 ## Compiler Error Interpretation
 
 ```

@@ -148,6 +148,17 @@ This is the same pattern used by C system calls (`errno`), POSIX functions, and 
 
 The invariant violated in the broken code: **functions that cross the WASM boundary must return error codes, not panic; traps are unrecoverable and destroy the module instance.**
 
+## ⚠️ Caution
+
+- Panics in WASM trap the entire module — the host gets no error information, just an abort. Always use error codes instead of panics for boundary functions.
+- Negative error codes can conflict with valid negative return values. Document your error code convention clearly.
+
+## 💡 Tips
+
+- Use `#[repr(i32)]` enums for error codes to ensure ABI stability.
+- Follow WASI conventions: 0 = success, positive = error code.
+- Use `catch_unwind` as a last resort to convert panics to error codes at the boundary.
+
 ## Compiler Error Interpretation
 
 ```

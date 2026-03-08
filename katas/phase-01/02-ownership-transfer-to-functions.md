@@ -57,6 +57,17 @@ This pattern — take ownership, do something, return ownership — works but is
 
 Note: We are deliberately not introducing borrowing (`&`) yet. Understanding moves first makes borrowing intuitive later.
 
+## ⚠️ Caution
+
+- **The "take-and-return" pattern is a code smell.** If you find yourself passing ownership to a function and then returning it just to keep using the value, you almost certainly want borrowing instead (Phase 2).
+- **This applies to closures too.** Closures that capture variables by value follow the same ownership rules — the captured variable is moved into the closure.
+
+## 💡 Tips
+
+- Look at the function signature to understand its ownership intent: `fn foo(s: String)` takes ownership, `fn foo(s: &String)` borrows, `fn foo(s: &str)` borrows a slice. The signature tells you the contract.
+- If a function only needs to read data, it should not take ownership. This is a design principle you will formalize in Phase 2.
+- E0382 is the most common Rust error for beginners. Seeing it is normal — it means the compiler is teaching you about ownership.
+
 ## Compiler Error Interpretation
 
 ```

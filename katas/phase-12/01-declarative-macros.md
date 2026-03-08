@@ -100,6 +100,17 @@ Here are the key fragment specifiers:
 
 Macros are powerful but should be used judiciously. They make code harder to read and debug because the expanded code is not visible in the source. Prefer functions and generics when they suffice; reach for macros when you need variadic arguments, code generation, or syntax extensions that functions cannot express.
 
+## ⚠️ Caution
+
+- Macro errors are harder to debug than function errors. The compiler reports errors at the expansion site, which can be far from the actual mistake.
+- Fragment specifiers (`expr`, `literal`, `ident`) must match the input exactly. Using `expr` when you need `literal` accepts too much; using `literal` when you need `expr` rejects valid expressions.
+
+## 💡 Tips
+
+- Start with functions and only reach for macros when you need features functions cannot provide (variadic args, code generation, compile-time string manipulation).
+- Use `cargo expand` to see what your macro generates — essential for debugging.
+- Macros are hygienic by default: variables defined inside a macro do not leak into the caller's scope.
+
 ## Compiler Error Interpretation
 
 ```

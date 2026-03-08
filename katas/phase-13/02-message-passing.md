@@ -79,6 +79,17 @@ There is an important subtlety with the `for received in rx` loop: it blocks wai
 
 The invariant violated in the broken code: **a moved value cannot be used again; to share a Sender across multiple threads, clone it before the move.**
 
+## ⚠️ Caution
+
+- `mpsc::channel()` is unbounded — producers can send faster than the consumer processes. For backpressure, use `sync_channel(bound)`.
+- `for received in rx` blocks forever until ALL sender clones are dropped. If any sender is still alive (even unused), the receiver will not terminate.
+
+## 💡 Tips
+
+- Clone the sender before moving into a thread: `let tx_clone = tx.clone(); move || { tx_clone.send(...) }`.
+- Drop the original sender after cloning if the main thread does not send messages — this ensures the receiver loop terminates.
+- Channels are one-way. For bidirectional communication, create two channels.
+
 ## Compiler Error Interpretation
 
 ```

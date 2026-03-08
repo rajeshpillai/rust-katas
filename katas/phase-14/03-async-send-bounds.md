@@ -174,6 +174,17 @@ This works because the `Rc` is no longer part of the state machine's state at th
 
 The invariant violated in the broken code: **a future sent to another thread must be `Send`; holding a non-`Send` type across an `.await` point makes the entire future non-`Send`.**
 
+## ⚠️ Caution
+
+- Holding a non-`Send` type (like `Rc`, `RefCell` guard, `MutexGuard` in some cases) across an `.await` point makes the entire future non-`Send`, preventing it from being spawned on a multi-threaded executor.
+- The error message for non-Send futures can be extremely verbose. Focus on the line "is not Send" and trace back to which variable is held across the await.
+
+## 💡 Tips
+
+- Drop non-Send values before `.await` points: `{ let guard = rc.borrow(); use(guard); } async_operation().await`.
+- Use `Arc` instead of `Rc` and `tokio::sync::Mutex` instead of `std::sync::Mutex` in async code.
+- If a future must be `Send`, ensure every value held across an `.await` point is also `Send`.
+
 ## Compiler Error Interpretation
 
 ```

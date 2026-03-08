@@ -222,6 +222,17 @@ impl PortNumber {
 }
 ```
 
+## ⚠️ Caution
+
+- Code in the same module can still access private fields directly, bypassing the smart constructor. Place validated types in their own module for true encapsulation.
+- Always use `#[must_use]` on `Result`-returning constructors to prevent callers from ignoring validation errors.
+
+## 💡 Tips
+
+- Follow the "parse, don't validate" principle: convert raw input into a validated type at the boundary, then use the validated type everywhere.
+- Provide only immutable getters (no setters) to maintain invariants after construction.
+- Consider implementing `TryFrom` for standard conversion patterns.
+
 ## Compiler Error Interpretation
 
 If you try to construct the struct directly with private fields from outside the module:
