@@ -77,8 +77,10 @@ fn main() {
 ## Correct Code
 
 ```rust
+#[derive(Debug)]
 struct OrderId(u64);
 
+#[derive(Debug)]
 enum Order {
     Pending {
         id: OrderId,
