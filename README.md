@@ -128,3 +128,7 @@ rustc --edition 2021 apps/todo-app/main.rs -o todo
 - Random access via `Seek` — reads/writes individual records by offset
 - Soft delete with cascading (deleting a task deletes its subtasks)
 - Uses `OpenOptions` for in-place updates without truncation
+
+## License
+
+This project is licensed under the [GNU Affero General Public License v3.0](LICENSE) (AGPL-3.0).
