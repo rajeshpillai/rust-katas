@@ -92,3 +92,39 @@ hints:
 ```
 
 Restart the backend to pick up new katas.
+
+## Apps
+
+### CLI Todo App (Phase 26 — File I/O)
+
+A standalone terminal todo app built with the binary file I/O patterns taught in Phase 26. No external dependencies — compiles with `rustc` alone.
+
+**Build:**
+
+```sh
+rustc --edition 2021 apps/todo-app/main.rs -o todo
+```
+
+**Usage:**
+
+```sh
+./todo                           # List all tasks (default)
+./todo add Buy groceries         # Add a task
+./todo done 1                    # Toggle task #1 completion
+./todo edit 1 Buy organic food   # Edit task title
+./todo delete 1                  # Delete task (cascades to subtasks)
+./todo sub 1 Get milk            # Add subtask to task #1
+./todo sub-done 1                # Toggle subtask completion
+./todo sub-edit 1 Get oat milk   # Edit subtask title
+./todo sub-delete 1              # Delete a subtask
+./todo clear                     # Wipe all data
+```
+
+**Technical details:**
+
+- Data stored as fixed-size binary records in `~/.rust-todo/` (`tasks.bin` + `subtasks.bin`)
+- Record layout: `id (4B) + title (128B, null-padded) + completed (1B) + deleted (1B) = 134 bytes` per task
+- Subtask records add a `parent_id (4B)` field = 138 bytes each
+- Random access via `Seek` — reads/writes individual records by offset
+- Soft delete with cascading (deleting a task deletes its subtasks)
+- Uses `OpenOptions` for in-place updates without truncation
