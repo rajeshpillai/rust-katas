@@ -44,3 +44,15 @@
 - [x] Phase 23 — WASM Outside the Browser (3 katas)
 - [x] Phase 24 — Advanced WASM Systems Patterns (3 katas)
 - [x] Phase 25 — Capstone Projects (3 katas)
+
+## Practical Extensions
+
+- [ ] Phase 26 — File I/O in Rust (8 katas)
+  - [ ] 01 Writing and Reading Text Files
+  - [ ] 02 Buffered I/O and Line-by-Line Reading
+  - [ ] 03 Binary Files — Structs to Bytes
+  - [ ] 04 Delimited File Parsing (CSV-style)
+  - [ ] 05 Random Access with Seek
+  - [ ] 06 Todo App: Record Layout and File Storage
+  - [ ] 07 Todo App: CRUD Operations
+  - [ ] 08 Todo App: Subtasks and Record Relationships
