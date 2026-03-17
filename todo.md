@@ -47,12 +47,12 @@
 
 ## Practical Extensions
 
-- [ ] Phase 26 — File I/O in Rust (8 katas)
-  - [ ] 01 Writing and Reading Text Files
-  - [ ] 02 Buffered I/O and Line-by-Line Reading
-  - [ ] 03 Binary Files — Structs to Bytes
-  - [ ] 04 Delimited File Parsing (CSV-style)
-  - [ ] 05 Random Access with Seek
-  - [ ] 06 Todo App: Record Layout and File Storage
-  - [ ] 07 Todo App: CRUD Operations
-  - [ ] 08 Todo App: Subtasks and Record Relationships
+- [x] Phase 26 — File I/O in Rust (8 katas)
+  - [x] 01 Writing and Reading Text Files
+  - [x] 02 Buffered I/O and Line-by-Line Reading
+  - [x] 03 Binary Files — Structs to Bytes
+  - [x] 04 Delimited File Parsing (CSV-style)
+  - [x] 05 Random Access with Seek
+  - [x] 06 Todo App: Record Layout and File Storage
+  - [x] 07 Todo App: CRUD Operations
+  - [x] 08 Todo App: Subtasks and Record Relationships
