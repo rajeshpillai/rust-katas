@@ -122,3 +122,7 @@ This error is exceptionally clear:
 - **"to force the closure to take ownership... use the `move` keyword"** — The compiler tells you the exact fix. Adding `move` transfers ownership of `name` into the closure, so the closure is self-contained.
 
 This is one of those moments where the Rust compiler is genuinely teaching you. The error message explains the problem, identifies the specific variable, and provides the exact solution.
+
+---
+
+| [Prev: Operator Overloading via Traits](#/katas/operator-overloading) | [Next: Fn, FnMut, and FnOnce](#/katas/fn-fnmut-fnonce) |

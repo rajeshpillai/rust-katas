@@ -98,3 +98,7 @@ help: consider introducing a named lifetime parameter
 ```
 
 Error E0106 again — the same error code as with function signatures. The compiler requires a lifetime parameter on any struct that holds a reference. The suggested fix adds `<'a>` to the struct definition and `'a` to the reference. This pattern is mechanical: every `&` in a struct field needs a lifetime, and every lifetime must be declared on the struct itself.
+
+---
+
+| [Prev: Returning References](#/katas/returning-references) | [Next: Dangling References](#/katas/dangling-references) |

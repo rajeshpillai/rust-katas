@@ -234,3 +234,7 @@ error[E0026]: variant `Order::Pending` does not have a field named `tracking_num
 This error is the **entire point** of the refactoring. The compiler now knows that `Pending` orders do not have tracking numbers, and it prevents you from pretending they do. The invariant is encoded in the type, not in comments or documentation.
 
 When the compiler says "variant does not have this field," it is enforcing your domain model. This is Rust's data modeling philosophy: **let the compiler enforce your business rules**.
+
+---
+
+| [Prev: The Owned/Borrowed Duality: PathBuf/Path, OsString/OsStr](#/katas/owned-borrowed-duality) | [Next: The Newtype Pattern for Type Safety](#/katas/newtype-pattern) |

@@ -221,3 +221,7 @@ This error message is remarkably detailed:
 5. **"await occurs here, with `data` maybe used afterwards"** -- shows the `.await` point and notes that `data` is used after it, confirming it must be stored across the suspension.
 
 The compiler gives you everything you need: which type is the problem, why it is a problem, where the `.await` happens, and what requires `Send`. You can then choose your fix: use `Arc` instead, or restructure to drop the `Rc` before the `.await`.
+
+---
+
+| [Prev: Ownership and References Across Await Points](#/katas/async-ownership) | [Next: Raw Pointers and Unsafe Dereferencing](#/katas/raw-pointers) |

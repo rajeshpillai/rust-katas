@@ -127,3 +127,7 @@ error[E0282]: type annotations needed
 ```
 
 This is one of the most common iterator errors. The compiler says it cannot infer the type parameter `B` on `collect()`. The fix is always the same: provide a type annotation. Either annotate the binding (`let x: Vec<_> = ...`) or use turbofish (`.collect::<Vec<_>>()`). When you see "type annotations needed" involving `collect`, the compiler is asking you to choose your collection type.
+
+---
+
+| [Prev: IntoIterator: iter() vs into_iter() vs iter_mut()](#/katas/into-iterator) | [Next: Why Iterators Beat Loops](#/katas/iterators-vs-loops) |

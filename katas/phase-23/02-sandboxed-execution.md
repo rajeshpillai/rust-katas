@@ -202,3 +202,7 @@ This is a runtime panic from the post-allocation check:
 2. The 2048-byte allocation already succeeded (the memory exists on the heap), but the limit check happened too late.
 
 The panic is a poor recovery mechanism: it unwinds the stack, potentially leaving other sandbox state inconsistent. The `Result`-based approach in the correct version prevents the allocation from happening at all, keeping the system in a consistent state.
+
+---
+
+| [Prev: Plugin System — Dynamic Loading via Trait Objects](#/katas/plugin-system-traits) | [Next: WASI-Style Capability Passing — File Descriptors as Handles](#/katas/wasi-capability-passing) |

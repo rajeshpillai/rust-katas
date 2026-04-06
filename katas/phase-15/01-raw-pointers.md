@@ -117,3 +117,7 @@ The compiler error is direct and educational:
 3. **"they can violate aliasing rules and cause data races: all of these are undefined behavior"** -- the compiler lists the full category of risks. Unlike references, raw pointers have no guarantees about aliasing (multiple pointers to the same memory) or thread safety.
 
 The fix is simple: wrap the dereference in `unsafe { }`. But the deeper lesson is that you must understand and verify the invariants yourself. The `unsafe` block is not magic -- it transfers responsibility from the compiler to you.
+
+---
+
+| [Prev: Async Tasks Must Be Send](#/katas/async-send-bounds) | [Next: Building Safe Abstractions Over Unsafe Code](#/katas/safe-abstractions) |

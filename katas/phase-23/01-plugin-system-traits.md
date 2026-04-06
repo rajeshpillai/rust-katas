@@ -212,3 +212,7 @@ The compiler error explains:
 1. **"expected a type, found a trait"** -- in Rust edition 2021, using a bare trait name (`Plugin`) in type position is rejected. The compiler requires the explicit `dyn` keyword to indicate a trait object.
 2. **"you can add the `dyn` keyword"** -- the compiler suggests `Vec<dyn Plugin>`, but this still would not work because `dyn Plugin` is unsized. `Vec` requires all elements to have a known, fixed size.
 3. **The full fix:** Use `Vec<Box<dyn Plugin>>`. The `dyn` keyword makes the trait object explicit, and `Box` provides the indirection needed for an unsized type. `Box<dyn Plugin>` is always 16 bytes (two pointers: data + vtable), regardless of the concrete type inside.
+
+---
+
+| [Prev: Stable WASM API Design — Opaque Handles Instead of Pointers](#/katas/stable-wasm-api-design) | [Next: Sandboxed Execution — Resource Limits and Isolation](#/katas/sandboxed-execution) |

@@ -215,3 +215,7 @@ note: an implementation of `Add` might be missing for `Vec2`
 ```
 
 The compiler says `+` is not available because the `Add` trait is not implemented. It points you to the exact trait needed. Implement `impl Add for Vec2 { ... }` to make `+` work.
+
+---
+
+| [Prev: Associated Types vs Generic Parameters](#/katas/associated-types) | [Next: Closure Capture and Ownership](#/katas/closure-capture) |

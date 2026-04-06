@@ -193,3 +193,7 @@ error[E0277]: the type `str` cannot be indexed by `{integer}`
 ```
 
 The compiler blocks integer indexing on strings because UTF-8 makes byte-level access unsafe. Use `.chars().nth(0)` for the first character, or `.as_bytes()[0]` if you explicitly want the first byte.
+
+---
+
+| [Prev: Methods and impl Blocks](#/katas/methods-and-impl) | [Next: References — Pointers Without the Danger](#/katas/references-intro) |

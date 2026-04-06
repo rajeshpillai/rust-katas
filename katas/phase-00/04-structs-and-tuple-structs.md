@@ -93,3 +93,7 @@ error[E0063]: missing field `green` in initializer of `Color`
 ```
 
 The compiler tells you exactly which field is missing. Error code E0063 means you are constructing a struct but have not provided all required fields. The fix is straightforward: add the missing field. Rust treats this as a hard error because a partially initialized struct would be unsound — every field must have a known, valid value.
+
+---
+
+| [Prev: Option and Result](#/katas/option-and-result) | [Next: Pattern Matching Exhaustiveness](#/katas/pattern-matching-exhaustiveness) |

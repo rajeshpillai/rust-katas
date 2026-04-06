@@ -87,3 +87,7 @@ error[E0499]: cannot borrow `scores` as mutable more than once at a time
 ```
 
 Error E0499 is the canonical "two mutable borrows" error. The compiler shows three things: where the first borrow was created, where the second (conflicting) borrow was created, and where the first borrow is still in use. That last part is crucial — if `first` were never used after `second` was created, Rust's non-lexical lifetimes would allow the code. The conflict exists because `first` is used on line 7, which means its borrow is still active when `second` is created on line 5.
+
+---
+
+| [Prev: Immutable Borrows](#/katas/immutable-borrows) | [Next: Aliasing and Mutation](#/katas/aliasing-and-mutation) |

@@ -128,3 +128,7 @@ The compiler error tells you:
 3. **"consult the function's documentation"** -- the compiler reminds you that unsafe operations have preconditions. For FFI calls, you should read the C function's documentation (in this case, the C standard library documentation for `abs`) to understand what inputs are valid and what behavior to expect.
 
 The fix is syntactically simple (add `unsafe { }`), but the deeper responsibility is understanding the foreign function's contract and ensuring your Rust code upholds it.
+
+---
+
+| [Prev: Unsafe Traits — Send and Sync Contracts](#/katas/unsafe-trait-impl) | [Next: Memory Layout with repr(C) for FFI](#/katas/memory-layout) |

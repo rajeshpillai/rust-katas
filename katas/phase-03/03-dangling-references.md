@@ -81,3 +81,7 @@ error[E0515]: cannot return reference to local variable `greeting`
 ```
 
 Error E0515 is one of the clearest error messages in Rust. It says exactly what is wrong: "returns a reference to data owned by the current function." The function owns `greeting`, and when the function ends, that data will be dropped. Returning a reference to it would create a dangling pointer. The fix is to return the owned value directly — change the return type from `&str` to `String` and remove the `&`.
+
+---
+
+| [Prev: Structs Holding References](#/katas/structs-holding-references) | [Next: Lifetime Elision](#/katas/lifetime-elision) |

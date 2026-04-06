@@ -156,3 +156,7 @@ This error reveals a key Rust pattern:
 - **The suggestion to `use std::io::BufRead`** — The compiler helps, but the real fix is also wrapping `File` in `BufReader`, since `File` alone does not implement `BufRead`.
 
 This is a two-part fix: wrap in `BufReader` AND import the trait.
+
+---
+
+| [Prev: Writing and Reading Text Files](#/katas/writing-and-reading-text) | [Next: Binary Files: Structs to Bytes](#/katas/binary-files-structs-to-bytes) |

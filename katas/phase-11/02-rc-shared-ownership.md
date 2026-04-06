@@ -124,3 +124,7 @@ error[E0382]: use of moved value: `list_a`
 ```
 
 The compiler pinpoints the move and the invalid reuse. It also explains *why* the move happens: `List` does not implement `Copy`, so passing it to `Box::new()` transfers ownership. The solution is not to implement `Copy` (recursive types with heap data cannot be `Copy`), but to use `Rc` for shared ownership. When you see "use of moved value" and your intent is to share data between multiple owners, `Rc` (or `Arc` for concurrent code) is the answer.
+
+---
+
+| [Prev: Box and Heap Allocation](#/katas/box-heap-allocation) | [Next: RefCell and Interior Mutability](#/katas/refcell-interior-mutability) |

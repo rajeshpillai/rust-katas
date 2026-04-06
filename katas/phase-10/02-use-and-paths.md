@@ -135,3 +135,7 @@ error[E0433]: failed to resolve: use of undeclared crate or module `client`
 ```
 
 Inside `server`, there is no child module called `client`. The compiler only searches the current module's children. Use `super::client::connect()` to navigate to the sibling module through the parent.
+
+---
+
+| [Prev: Modules and Visibility Rules](#/katas/module-visibility) | [Next: Writing Unit Tests](#/katas/unit-tests) |

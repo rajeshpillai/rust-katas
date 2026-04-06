@@ -86,3 +86,7 @@ help: consider giving `parsed` an explicit type
 ```
 
 Error E0283 means the compiler found multiple possible types that satisfy the trait bounds, and it cannot choose between them. The help message suggests adding a type annotation to `parsed`. Notice the compiler even suggests `Vec<_>` — using `_` for the element type, hoping it can infer that part from other context. In this case, you need `Vec<i32>` because `parse()` is also ambiguous.
+
+---
+
+| [Prev: Pattern Matching Exhaustiveness](#/katas/pattern-matching-exhaustiveness) | [Next: Functions — The Basic Unit of Code](#/katas/functions) |

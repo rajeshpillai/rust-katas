@@ -139,3 +139,7 @@ The error code `E0515` specifically covers the case of returning references to l
 2. Restructure the code so the reference points to data with a longer lifetime (e.g., data passed in by the caller).
 
 There is no way to "extend" the lifetime of a local variable. Lifetimes are not flexible — they are determined by scope.
+
+---
+
+| [Prev: Vec<T> and Slices: Owned vs Borrowed Collections](#/katas/vec-and-slices) | [Next: HashMap and the Entry API](#/katas/hashmap-entry-api) |

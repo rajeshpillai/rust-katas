@@ -191,3 +191,7 @@ thread 'tests::test_with_spaces' panicked at 'not yet implemented', src/main.rs:
 ```
 
 This is not a compiler error -- the code compiles fine. These are **runtime panics** from `cargo test`. The message "not yet implemented" comes from the `todo!()` macro. Each test runs in its own thread, so one panic does not prevent other tests from running. The output shows every test failing at the same line (`src/main.rs:11:5`), which is where `todo!()` lives. Once you replace `todo!()` with a real implementation, these panics disappear and the tests either pass or fail based on your logic.
+
+---
+
+| [Prev: Writing Unit Tests](#/katas/unit-tests) | [Next: Integration Tests and Doc Tests](#/katas/integration-and-doc-tests) |

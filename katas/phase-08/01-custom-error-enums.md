@@ -197,3 +197,7 @@ This error reveals how `?` works under the hood:
 - **"the question mark operation implicitly performs a conversion"** — The compiler explains the mechanism: `?` is not just early return, it is early return **with conversion**.
 
 The solution: define your own error type that *can* be converted from both `std::io::Error` and `ParseIntError`.
+
+---
+
+| [Prev: Phantom Types: Compile-Time State Without Runtime Cost](#/katas/phantom-types) | [Next: The ? Operator for Error Propagation](#/katas/question-mark-operator) |

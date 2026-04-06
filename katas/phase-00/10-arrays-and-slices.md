@@ -166,3 +166,7 @@ error[E0308]: mismatched types
 ```
 
 The compiler treats `[i32; 3]` and `[i32; 5]` as completely different types. The fix is to generalize the parameter from a specific array type to a slice (`&[i32]`), which accepts any length.
+
+---
+
+| [Prev: Tuples and Destructuring](#/katas/tuples-and-destructuring) | [Next: Multidimensional Arrays and Grids](#/katas/multidimensional-arrays) |

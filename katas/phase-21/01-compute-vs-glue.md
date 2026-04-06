@@ -146,3 +146,7 @@ This is a runtime panic from the performance assertion:
 2. **"I/O in the hot loop is killing performance"** -- the 10000 `println!` calls dominated the execution time.
 
 The exact time varies by system, but the pattern is consistent: pure computation on 10000 integers takes microseconds, while printing 10000 lines takes hundreds of milliseconds. This 1000x slowdown is representative of what happens in browser WASM when compute kernels make host calls inside tight loops.
+
+---
+
+| [Prev: Stable Interface Versioning — Evolving Without Breaking](#/katas/stable-abi-versioning) | [Next: Batch Calls vs Chatty Calls — Minimizing Boundary Crossings](#/katas/batch-vs-chatty-calls) |

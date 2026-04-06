@@ -168,3 +168,7 @@ This is a runtime panic from a failed assertion:
 2. **"First value was corrupted by overlapping write!"** -- the assertion message describes exactly what happened.
 
 This kind of bug is especially dangerous because it does not crash -- it produces wrong data silently. In a WASM application processing images, audio, or financial data, a misaligned write could produce subtly incorrect results that pass all obvious checks.
+
+---
+
+| [Prev: Export Convention — Functions the Host Can Call](#/katas/extern-c-export-convention) | [Next: Passing Strings Across the Boundary — Pointer and Length](#/katas/passing-strings-across-boundary) |

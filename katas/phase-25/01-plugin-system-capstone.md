@@ -277,3 +277,7 @@ thread 'main' panicked at 'assertion `left == right` failed: Plugin B's memory w
 Note: In the shown execution order (A then B), Plugin B's fill overwrites A's corruption, so the assertion may actually pass. The corruption is visible if the order is reversed, or in a modified version where B checks its memory before writing. The general principle remains: shared raw memory access between plugins creates a race condition where one plugin can corrupt another's data.
 
 In a real deployment where plugins run concurrently or in different orders, this is a critical security and reliability vulnerability. The `MemorySlice` approach prevents it structurally.
+
+---
+
+| [Prev: WASM vs Containers — Isolation Through Type Boundaries](#/katas/wasm-vs-containers) | [Next: Capstone: Sandboxed Script Interpreter with Bounded Resources](#/katas/sandboxed-script-execution) |

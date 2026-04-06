@@ -197,3 +197,7 @@ error[E0277]: the trait bound `f64: Eq` is not satisfied
 ```
 
 The compiler says `f64` does not implement `Eq`, which is required by `HashSet`. This is because `NaN != NaN` in IEEE 754, violating the reflexivity requirement of `Eq`. Use integer types, strings, or a custom wrapper with defined NaN handling.
+
+---
+
+| [Prev: Multidimensional Collections — Grids and Matrices](#/katas/multidimensional-collections) | [Next: The Owned/Borrowed Duality: PathBuf/Path, OsString/OsStr](#/katas/owned-borrowed-duality) |

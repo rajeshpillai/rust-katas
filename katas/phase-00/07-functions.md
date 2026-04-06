@@ -155,3 +155,7 @@ error[E0308]: mismatched types
 ```
 
 The compiler even suggests the fix: "remove this semicolon to return this value." This is one of Rust's most helpful error messages.
+
+---
+
+| [Prev: Type Inference and Annotations](#/katas/type-inference-and-annotations) | [Next: Control Flow — if, loops, and match](#/katas/control-flow) |

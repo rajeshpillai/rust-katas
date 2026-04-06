@@ -164,3 +164,7 @@ This is a runtime panic from the allocation counter assertion:
 2. **"one per call"** -- each function call allocated a new Vec, even though every Vec had the same capacity.
 
 In a real WASM application processing video frames at 60fps, this would mean 60 allocations per second for each buffer. Over minutes of use, the linear memory would fragment, grow unnecessarily, and degrade performance.
+
+---
+
+| [Prev: WASM Cannot Touch the DOM — Host Callbacks Required](#/katas/no-dom-from-wasm) | [Next: Zero-Copy Data Access — Slices vs Clones](#/katas/zero-copy-slices) |

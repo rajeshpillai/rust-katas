@@ -208,3 +208,7 @@ note: required by a bound in `spawn`
 ```
 
 This is the error you **should** see. The compiler correctly identifies that `*mut i32` is not `Send`, and since `SharedCounter` contains a `*mut i32`, it is not `Send` either. The `unsafe impl Send` overrides this check, telling the compiler "trust me, it is fine." When the assertion is wrong, you get undefined behavior at runtime instead of a compile error. This is why `unsafe impl` for marker traits is one of the most dangerous things you can do in Rust -- and why it requires the `unsafe` keyword.
+
+---
+
+| [Prev: Building Safe Abstractions Over Unsafe Code](#/katas/safe-abstractions) | [Next: FFI Basics — Calling C Functions from Rust](#/katas/ffi-basics) |

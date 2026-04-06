@@ -228,3 +228,7 @@ This is a runtime panic from the `write` method:
 2. **"the len is 32 but the index is 32"** -- off by one past the end. The allocator returned offset 32 without checking bounds, and the write operation immediately crashed.
 
 The `alloc` method silently succeeded (returned 32), creating a ticking time bomb. The crash only happens when someone tries to use the returned offset. In a real system, the time between allocation and crash could be long, making the bug very hard to trace back to the faulty allocator.
+
+---
+
+| [Prev: Passing Strings Across the Boundary — Pointer and Length](#/katas/passing-strings-across-boundary) | [Next: Import/Export Contracts — Type-Safe Module Boundaries](#/katas/import-export-contracts) |

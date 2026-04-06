@@ -150,3 +150,7 @@ This error tells you exactly what went wrong:
 - **"the requirement to implement `Fn` derives from here"** — It shows you where the `Fn` bound is declared, so you can decide whether to change the bound or change the closure.
 
 The compiler is guiding you toward a decision: either make the closure less consuming (fix the closure) or make the function less demanding (relax the bound).
+
+---
+
+| [Prev: Closure Capture and Ownership](#/katas/closure-capture) | [Next: move Closures and Ownership Transfer](#/katas/move-closures) |

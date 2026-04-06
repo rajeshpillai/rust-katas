@@ -162,3 +162,7 @@ The compiler error reveals the exact conflict:
 - **"immutable borrow later used here"** on the `None` branch — The `match` expression keeps the result of `get` alive through all branches, extending the immutable borrow.
 
 This error teaches a deeper lesson: in Rust, you must design your data access patterns so that reads and writes do not overlap. The Entry API is Rust's answer to the "read-then-write" pattern for hash maps. It is a design-level solution, not a workaround.
+
+---
+
+| [Prev: String (Owned) vs &str (Borrowed)](#/katas/string-vs-str) | [Next: Fixed Arrays vs Vec — Stack vs Heap](#/katas/arrays-vs-vec) |

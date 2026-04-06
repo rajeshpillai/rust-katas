@@ -156,3 +156,7 @@ This is a runtime panic from the copy-tracking assertion:
 2. **"Unnecessary copy detected"** -- the function only reads the data to compute an average. There is no reason to own a copy.
 
 In a real WASM application processing images at 30fps, this would mean copying 30MB of data per second (for 1MP images) with zero benefit. The zero-copy version processes the same data with zero additional memory allocation.
+
+---
+
+| [Prev: Allocation Minimization — Reuse Buffers Across Calls](#/katas/allocation-minimization) | [Next: Stable WASM API Design — Opaque Handles Instead of Pointers](#/katas/stable-wasm-api-design) |

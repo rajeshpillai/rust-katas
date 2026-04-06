@@ -180,3 +180,7 @@ The compiler tells you:
 2. **"futures do nothing unless you `.await` or poll them"** -- the compiler explains the lazy evaluation model directly.
 
 In production code, you should treat this warning as an error (use `#[deny(unused_must_use)]` or `#![deny(warnings)]`). A forgotten `.await` or missing executor call can cause entire operations to silently not happen -- database writes, network requests, file operations -- with no runtime error to alert you.
+
+---
+
+| [Prev: Send and Sync — Why Data Races Do Not Compile](#/katas/send-and-sync) | [Next: Ownership and References Across Await Points](#/katas/async-ownership) |

@@ -178,3 +178,7 @@ help: consider restricting type parameter `T`
 ```
 
 The compiler says "T doesn't implement Display" and suggests adding the bound. This is the generic contract: if you want to use a trait's functionality, you must declare it as a bound.
+
+---
+
+| [Prev: Generic Structs and Enums](#/katas/generic-structs-and-enums) | [Next: Derived Traits — Debug, Clone, PartialEq, and More](#/katas/derived-traits) |

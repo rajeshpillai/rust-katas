@@ -117,3 +117,7 @@ error[E0382]: borrow of moved value: `names`
 ```
 
 The compiler identifies exactly where the move happened (`.into_iter()`) and where the invalid use occurs (the `println!`). It also explains *why* the move happens: `Vec<String>` does not implement `Copy`, so `into_iter()` takes ownership by moving. The fix is to switch to `.iter()` if you need the collection afterward, or to restructure your code so that the `into_iter()` call is the last use of the variable.
+
+---
+
+| [Prev: Iterator Chaining and Lazy Evaluation](#/katas/iterator-chaining) | [Next: collect() and the Turbofish](#/katas/collect-and-turbofish) |

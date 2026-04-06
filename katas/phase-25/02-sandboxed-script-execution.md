@@ -332,3 +332,7 @@ The program never terminates because:
 3. The `max_output` field is never checked
 
 This is a denial-of-service vulnerability. In a WASM runtime, a module that runs forever prevents other modules from executing and wastes host resources. Fuel metering is the primary defense against this class of bugs.
+
+---
+
+| [Prev: Capstone: Safe Plugin System with Memory Isolation](#/katas/plugin-system-capstone) | [Next: Capstone: Data Processing Pipeline with Stable ABI](#/katas/data-processor-pipeline) |

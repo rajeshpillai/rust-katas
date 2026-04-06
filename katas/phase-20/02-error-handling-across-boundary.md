@@ -182,3 +182,7 @@ The compiler error explains:
 1. **"may not be safely transferred across an unwind boundary"** -- a `&mut` reference inside `catch_unwind` is dangerous because the panic might have left the data in an inconsistent state.
 2. **"`UnwindSafe` is not implemented for `&mut GuestState`"** -- only shared references (`&T`) are `UnwindSafe` by default, not mutable references. This is because a panic could happen mid-mutation, leaving the state half-updated.
 3. **The deeper lesson:** Even if you could catch the panic, the guest's state might be corrupted. The `Result`-based approach avoids this entirely -- the guest returns an error before any corruption can occur.
+
+---
+
+| [Prev: Import/Export Contracts — Type-Safe Module Boundaries](#/katas/import-export-contracts) | [Next: Stable Interface Versioning — Evolving Without Breaking](#/katas/stable-abi-versioning) |

@@ -207,3 +207,7 @@ The values are garbage because the 16 bytes starting at offset 3 do not align wi
 1. Always compute offsets with `index * RECORD_SIZE`
 2. Assert/validate after reading: does the `id` match what you expected?
 3. Encapsulate seek logic in a function so the multiplication cannot be forgotten
+
+---
+
+| [Prev: Delimited File Parsing](#/katas/delimited-file-parsing) | [Next: Todo App: Record Layout and File Storage](#/katas/todo-app-record-layout) |

@@ -176,3 +176,7 @@ The compiler identifies:
 3. **"`temp` dropped here while still borrowed"** -- the exact point where `temp` is destroyed, while the future still holds a reference to it.
 
 The compiler traces the lifetime of the borrow from creation (the `&temp` argument) through the future (stored in `result`) to the point where `temp` is dropped. It proves the borrow would be dangling, and rejects the code. This is the borrow checker protecting you from use-after-free in concurrent code.
+
+---
+
+| [Prev: Async Await Basics — Futures Are Lazy](#/katas/async-await-basics) | [Next: Async Tasks Must Be Send](#/katas/async-send-bounds) |

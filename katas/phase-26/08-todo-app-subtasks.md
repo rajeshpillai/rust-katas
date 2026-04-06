@@ -485,3 +485,7 @@ The broader lesson: **data integrity constraints that exist only in your head wi
 - Verify periodically (orphan detection)
 
 This is the discipline of data correctness — the same discipline Rust applies to memory correctness, but at a layer the compiler cannot reach.
+
+---
+
+| [Prev: Todo App: CRUD Operations](#/katas/todo-app-crud) |  |

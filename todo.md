@@ -13,21 +13,21 @@
 - [ ] Replace textarea with a proper code editor (CodeMirror 6 recommended)
 - [ ] Applications section (currently "Coming Soon" placeholder)
 
-## Core Rust (80 katas complete)
+## Core Rust (87 katas complete)
 
 - [x] Phase 0 — Rust as a Language (14 katas)
 - [x] Phase 1 — Ownership (4 katas)
 - [x] Phase 2 — Borrowing (4 katas)
 - [x] Phase 3 — Lifetimes (4 katas)
 - [x] Phase 4 — Traits & Generics (10 katas)
-- [x] Phase 5 — Closures & the Fn Traits (3 katas)
-- [x] Phase 6 — Collections & the Owned/Borrowed Duality (6 katas)
-- [x] Phase 7 — Data Modeling the Rust Way (3 katas)
+- [x] Phase 5 — Closures & the Fn Traits (4 katas) — added: Closures as Trait Objects vs Generics
+- [x] Phase 6 — Collections & the Owned/Borrowed Duality (7 katas) — added: Owned/Borrowed Duality
+- [x] Phase 7 — Data Modeling the Rust Way (4 katas) — added: Phantom Types
 - [x] Phase 8 — Error Handling as Design (4 katas)
-- [x] Phase 9 — Iterators & Zero-Cost Abstractions (4 katas)
-- [x] Phase 10 — Modules, Visibility & Testing (4 katas)
-- [x] Phase 11 — Memory & Performance Intuition (4 katas)
-- [x] Phase 12 — Macros (3 katas)
+- [x] Phase 9 — Iterators & Zero-Cost Abstractions (5 katas) — added: Why Iterators Beat Loops
+- [x] Phase 10 — Modules, Visibility & Testing (5 katas) — added: Integration & Doc Tests
+- [x] Phase 11 — Memory & Performance Intuition (5 katas) — added: Arc
+- [x] Phase 12 — Macros (4 katas) — added: Procedural Macros Awareness
 - [x] Phase 13 — Concurrency the Rust Way (4 katas)
 - [x] Phase 14 — Async Rust (3 katas)
 - [x] Phase 15 — Unsafe Rust (3 katas)

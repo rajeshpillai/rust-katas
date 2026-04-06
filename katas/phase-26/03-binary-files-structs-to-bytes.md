@@ -196,3 +196,7 @@ This error clearly states:
 - **"expected `&[u8]`, found `&SensorReading`"** — `write_all` works with raw bytes, not arbitrary types. A struct is not bytes.
 - **No `From` or `Into` conversion exists** between your struct and `&[u8]`. You must write the conversion yourself.
 - Unlike languages with reflection or runtime serialization, Rust requires you to explicitly define how your data maps to bytes. This is the cost of zero-cost abstractions — nothing is hidden.
+
+---
+
+| [Prev: Buffered I/O and Line-by-Line Reading](#/katas/buffered-io-and-lines) | [Next: Delimited File Parsing](#/katas/delimited-file-parsing) |

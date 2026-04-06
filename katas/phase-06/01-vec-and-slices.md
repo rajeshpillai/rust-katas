@@ -135,3 +135,7 @@ This error captures the essence of Rust's aliasing rules:
 - **"immutable borrow later used here"** — The iterator is still in use (the loop continues after the `remove` call), so the immutable borrow has not ended.
 
 The compiler is preventing iterator invalidation at compile time. In C++, modifying a `std::vector` while iterating with iterators is undefined behavior. In Java, it throws `ConcurrentModificationException` at runtime. In Rust, it simply does not compile.
+
+---
+
+| [Prev: Closures as Trait Objects vs Generic Parameters](#/katas/closures-as-trait-objects) | [Next: String (Owned) vs &str (Borrowed)](#/katas/string-vs-str) |

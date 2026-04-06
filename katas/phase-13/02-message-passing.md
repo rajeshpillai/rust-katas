@@ -118,3 +118,7 @@ The compiler traces the lifetime of `tx` step by step:
 3. **"value used here after move"** -- the second `thread::spawn` tries to use `tx`, but it is gone.
 
 The fix is always the same pattern: clone before you move. This applies to any non-`Copy` type you need in multiple threads.
+
+---
+
+| [Prev: Thread Ownership Transfer](#/katas/thread-ownership) | [Next: Shared State with Arc and Mutex](#/katas/shared-state-mutex) |

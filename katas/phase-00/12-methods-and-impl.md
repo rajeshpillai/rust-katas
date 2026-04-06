@@ -165,3 +165,7 @@ error[E0599]: no method named `area` found for struct `Rectangle` in the current
 ```
 
 The compiler says "no method named `area`" on `Rectangle`. The function `area` exists, but it is a free function, not a method. To make it a method, move it into `impl Rectangle { ... }` and change the first parameter to `&self`.
+
+---
+
+| [Prev: Multidimensional Arrays and Grids](#/katas/multidimensional-arrays) | [Next: String Basics — String vs &str](#/katas/string-basics) |

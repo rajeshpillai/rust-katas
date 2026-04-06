@@ -162,3 +162,7 @@ error: no rules expected the token `"age"`
 ```
 
 The compiler successfully matched the first key-value pair (`"name" => "Bob"`) and then encountered a comma followed by `"age"`. Since the macro's pattern only accepts a single pair and has no repetition, it does not expect anything after the first pair. The token `"age"` is unexpected because the macro definition ended after one `$key => $value`. Adding `$( ... ),*` repetition allows the macro to continue matching additional pairs after each comma.
+
+---
+
+| [Prev: Declarative Macros with macro_rules!](#/katas/declarative-macros) | [Next: When to Use Macros vs Generics](#/katas/when-to-use-macros) |

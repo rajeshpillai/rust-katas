@@ -207,3 +207,7 @@ error[E0277]: `Color` doesn't implement `Debug`
 ```
 
 The compiler tells you exactly what is missing and how to fix it: add `#[derive(Debug)]`. This pattern repeats for every derivable trait — the error always names the missing trait and suggests deriving it.
+
+---
+
+| [Prev: Multiple Trait Bounds and Where Clauses](#/katas/multiple-trait-bounds) | [Next: Associated Types vs Generic Parameters](#/katas/associated-types) |

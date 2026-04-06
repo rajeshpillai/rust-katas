@@ -80,3 +80,7 @@ help: consider cloning the value if the performance cost is acceptable
 ```
 
 Error E0382 is one of the most common Rust errors. The compiler traces the full story: `greeting` was moved on line 3, and then you tried to use it on line 5. It even explains *why* the move happened — `String` does not implement `Copy`. The suggested fix (`.clone()`) is correct but comes with a note about performance cost. Rust wants you to understand that cloning heap data is not free.
+
+---
+
+| [Prev: References — Pointers Without the Danger](#/katas/references-intro) | [Next: Ownership Transfer to Functions](#/katas/ownership-transfer-to-functions) |

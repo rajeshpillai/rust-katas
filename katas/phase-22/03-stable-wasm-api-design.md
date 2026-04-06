@@ -209,3 +209,7 @@ This is a runtime panic from accessing an invalid index:
 2. The `get` method uses `self.resources[index]`, which panics for out-of-bounds access.
 
 In a real WASM system, this could corrupt memory: if the Vec had grown again (a new resource added at index 2), the handle would silently point to the wrong resource. The HashMap-based approach prevents both panics and silent corruption by returning `None` for freed handles.
+
+---
+
+| [Prev: Zero-Copy Data Access — Slices vs Clones](#/katas/zero-copy-slices) | [Next: Plugin System — Dynamic Loading via Trait Objects](#/katas/plugin-system-traits) |

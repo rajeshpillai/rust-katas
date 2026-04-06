@@ -100,3 +100,7 @@ error[E0502]: cannot borrow `data` as mutable because it is also borrowed as imm
 ```
 
 The compiler highlights line 12 as the critical point — the immutable borrow is "later used here." If line 12 did not exist, the immutable borrows would end at line 7, and the code would compile. This is the NLL system at work: the compiler calculates the actual last-use point of each reference and checks for conflicts. The error message tells you exactly which use is keeping the borrow alive, so you know what to move or remove to resolve the conflict.
+
+---
+
+| [Prev: Aliasing and Mutation](#/katas/aliasing-and-mutation) | [Next: Returning References](#/katas/returning-references) |

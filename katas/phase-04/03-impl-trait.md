@@ -173,3 +173,7 @@ This error is deceptively simple but deeply meaningful:
 - The compiler does **not** say "both implement `Describe`" because that is irrelevant — `impl Trait` requires a single concrete type, not just trait compatibility.
 
 This is a case where the compiler is protecting you from a fundamental ambiguity: stack-allocated values must have a known size at compile time, and the compiler cannot make the function's return slot simultaneously sized for both `Cat` and `Dog`.
+
+---
+
+| [Prev: Trait Bounds on Generic Functions](#/katas/trait-bounds) | [Next: Dynamic Dispatch and Object Safety](#/katas/dynamic-dispatch) |

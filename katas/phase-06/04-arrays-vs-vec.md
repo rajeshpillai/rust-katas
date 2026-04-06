@@ -166,3 +166,7 @@ error[E0599]: no method named `push` found for array `[{integer}; 5]` in the cur
 ```
 
 The compiler clearly states: `push` exists on `Vec`, not on arrays. Arrays have a fixed size determined at compile time. If you need to add elements, use `Vec<T>` instead.
+
+---
+
+| [Prev: HashMap and the Entry API](#/katas/hashmap-entry-api) | [Next: Multidimensional Collections — Grids and Matrices](#/katas/multidimensional-collections) |

@@ -204,3 +204,7 @@ This is a runtime panic from a failed assertion:
 2. **"ABI mismatch!"** -- the assertion message diagnoses the problem: the host and guest disagree on the data layout.
 
 This is silent data corruption. If there were no assertion, the host would proceed to read the "payload" at offset 255 instead of offset 64, producing further cascading corruption. In WASM systems with multiple modules communicating through shared memory, one ABI mismatch can corrupt an entire pipeline.
+
+---
+
+| [Prev: Error Handling Across the Boundary — No Panics Allowed](#/katas/error-handling-across-boundary) | [Next: Compute Kernel vs Glue Code — Separation of Concerns](#/katas/compute-vs-glue) |

@@ -91,3 +91,7 @@ error[E0599]: no method named `map` found for struct `Vec<{integer}>` in the cur
 ```
 
 This error is clear: `Vec` does not have a `map` method. The compiler even hints that `map` exists on `Iterator`. The fix is to call `.iter()` first to obtain an iterator, then call `.map()` on that iterator. When you see "no method named X found for struct Vec," check whether X is an iterator method and insert `.iter()` before the chain.
+
+---
+
+| [Prev: The Iterator Trait](#/katas/iterator-trait) | [Next: IntoIterator: iter() vs into_iter() vs iter_mut()](#/katas/into-iterator) |

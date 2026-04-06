@@ -186,3 +186,7 @@ In the error:
 2. **"src/main.rs:20:42"** -- the panic occurred on the second `stack.pop().unwrap()` inside the `Add` arm, which is the first pop that runs out of values.
 
 The deeper lesson: in WASM, this class of bug is caught *before* execution, during validation. The type system of a real WASM runtime is strict enough to prevent this structurally. Our `Result`-based fix catches it at runtime, which is the next best thing when we cannot do static validation.
+
+---
+
+| [Prev: Type-State Pattern — Encoding State in the Type System](#/katas/type-state-pattern) | [Next: Linear Memory — Bounds-Checked Byte Arrays](#/katas/linear-memory-bounds) |

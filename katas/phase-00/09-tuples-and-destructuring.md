@@ -144,3 +144,7 @@ help: to access tuple elements, use `result.0` or destructuring
 ```
 
 The compiler tells you: tuples are not arrays. Use `.0` syntax or destructuring to access elements. The distinction exists because tuple positions have independent types — something array indexing cannot express.
+
+---
+
+| [Prev: Control Flow — if, loops, and match](#/katas/control-flow) | [Next: Arrays and Slices](#/katas/arrays-and-slices) |

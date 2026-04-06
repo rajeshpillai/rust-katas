@@ -131,3 +131,7 @@ note: while trying to match `literal`
 ```
 
 The error message says "no rules expected the token `user`." The compiler tried every arm of the macro and none matched. The note shows which fragment it was trying to match against (`literal`) and why it failed: `user` is an identifier, not a literal. The fix is to widen the fragment specifier from `literal` to `expr`, or to add a new arm that matches identifiers. When you see "no rules expected the token," check which fragment specifier each arm uses and whether it covers the kind of syntax you are passing.
+
+---
+
+| [Prev: Arc: Shared Ownership Across Threads](#/katas/arc-atomic-reference-counting) | [Next: Macro Repetition Patterns](#/katas/macro-repetition) |

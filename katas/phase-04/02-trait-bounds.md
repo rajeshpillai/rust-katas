@@ -106,3 +106,7 @@ This error is rich with guidance:
 - **"`T` cannot be formatted with the default formatter"** — It connects the missing trait to the specific operation you tried to perform.
 - **"consider restricting type parameter `T`"** — It suggests the exact fix: add `: std::fmt::Display` to the generic parameter.
 - **"you may be able to use `{:?}`"** — It even offers an alternative: `Debug` formatting, which is a different trait. This is useful but not always what you want — `Display` is for user-facing output, `Debug` is for developer-facing output.
+
+---
+
+| [Prev: Defining and Implementing Traits](#/katas/defining-and-implementing-traits) | [Next: impl Trait in Argument and Return Position](#/katas/impl-trait) |

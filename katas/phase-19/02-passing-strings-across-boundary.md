@@ -149,3 +149,7 @@ This is a runtime panic from the assertion:
 3. The strings are not equal because the left side has trailing garbage.
 
 In some cases, the extra bytes might not be zero -- they could be data from a previous allocation, another string, or uninitialized memory. This would either produce an invalid UTF-8 error (panic on `unwrap()`) or a string containing random characters. Either way, the data is corrupted because the reader did not know where to stop.
+
+---
+
+| [Prev: Pointer Offset Arithmetic in Linear Memory](#/katas/offset-arithmetic) | [Next: Manual Allocation and Deallocation in Linear Memory](#/katas/manual-alloc-dealloc) |

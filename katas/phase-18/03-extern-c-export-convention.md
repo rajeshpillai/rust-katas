@@ -185,3 +185,7 @@ This is a runtime panic from the `unwrap()` on a `HashMap::get` that returned `N
 2. **"src/main.rs:35:52"** -- the panic occurs in the `call` method where `unwrap()` is called on the lookup result.
 
 In a real WASM runtime, this would be an instantiation error: "import 'add' not found in module exports." The module would fail to load, not crash at runtime. WASM validates all imports and exports at module load time, catching these mismatches before any code runs.
+
+---
+
+| [Prev: No Garbage Collector — Ownership IS the Memory Model](#/katas/no-gc-manual-drop) | [Next: Pointer Offset Arithmetic in Linear Memory](#/katas/offset-arithmetic) |

@@ -109,3 +109,7 @@ help: ensure that all possible cases are being handled by adding a match arm wit
 ```
 
 Error E0004 means "non-exhaustive patterns." The compiler names the exact variant you forgot (`TrafficLight::Yellow`) and even suggests adding it. This is the compiler acting as your ally — it is telling you about a logical gap in your code before it ever runs.
+
+---
+
+| [Prev: Structs and Tuple Structs](#/katas/structs-and-tuple-structs) | [Next: Type Inference and Annotations](#/katas/type-inference-and-annotations) |

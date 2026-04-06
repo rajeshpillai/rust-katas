@@ -86,3 +86,7 @@ help: consider changing this to be a mutable reference
 ```
 
 Error E0596 tells you that you are trying to mutate through an immutable reference. The compiler identifies the exact location of the mutation attempt and traces it back to the parameter type. The suggested fix — changing to `&mut String` — is exactly right. Rust's error messages do not just say "this is wrong"; they explain the relationship between the reference type and the operation you attempted.
+
+---
+
+| [Prev: Clone as Explicit Cost](#/katas/clone-as-explicit-cost) | [Next: Mutable Borrows](#/katas/mutable-borrows) |

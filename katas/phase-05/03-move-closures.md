@@ -153,3 +153,7 @@ This error follows the same pattern as the previous kata:
 For the `make_counter` function, the error is analogous but refers to `count` instead of `x`. The same fix applies: add `move` to transfer ownership into the closure.
 
 Note that this error (`E0373`) is the same error code for any case where a closure outlives borrowed data — whether returning from a function, spawning a thread, or any other scenario. The pattern and the fix are always the same: use `move` to give the closure ownership of the data it needs.
+
+---
+
+| [Prev: Fn, FnMut, and FnOnce](#/katas/fn-fnmut-fnonce) | [Next: Closures as Trait Objects vs Generic Parameters](#/katas/closures-as-trait-objects) |

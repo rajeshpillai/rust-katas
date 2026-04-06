@@ -168,3 +168,7 @@ error[E0596]: cannot borrow data in an `Rc` as mutable
 ```
 
 The compiler explains that `Rc<Account>` does not implement `DerefMut`, which means you cannot get a `&mut Account` from it. `Rc` intentionally omits `DerefMut` because shared ownership and unrestricted mutation would violate memory safety. The solution is to introduce `RefCell` between the `Rc` and the data: `Rc<RefCell<Account>>`. This moves the borrow check to runtime, where `RefCell` can dynamically ensure that mutable access is exclusive.
+
+---
+
+| [Prev: Rc and Shared Ownership](#/katas/rc-shared-ownership) | [Next: Deref Coercion and the Drop Trait](#/katas/deref-and-drop) |

@@ -114,3 +114,7 @@ This error tells you several things:
 - **"no method named `hello` found for struct `User`"** — Rust looked at `User` and could not find a method called `hello`, neither as an inherent method nor via any implemented trait.
 - **"items from traits can only be used if the trait is implemented and in scope"** — Rust knows `hello` exists on the `Greet` trait but `User` has not implemented it.
 - **"candidate #1: `Greet`"** — The compiler is even helpful enough to suggest which trait you probably meant to implement. This is the compiler being your ally.
+
+---
+
+| [Prev: Lifetime Elision](#/katas/lifetime-elision) | [Next: Trait Bounds on Generic Functions](#/katas/trait-bounds) |

@@ -87,3 +87,7 @@ error[E0502]: cannot borrow `items` as mutable because it is also borrowed as im
 ```
 
 Error E0502 captures the aliasing-and-mutation conflict. It shows three locations: where the immutable borrow was created (line 4), where the conflicting mutable borrow occurs (line 6), and where the immutable borrow is still in use (line 8). The compiler is proving that the immutable reference `first` might be invalidated by the `push`. This is not a theoretical concern — this exact bug causes real crashes in C/C++ programs. Rust catches it before the code ever runs.
+
+---
+
+| [Prev: Mutable Borrows](#/katas/mutable-borrows) | [Next: Borrow Scopes and Non-Lexical Lifetimes](#/katas/borrow-scope-nll) |

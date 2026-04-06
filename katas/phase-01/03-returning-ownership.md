@@ -101,3 +101,7 @@ error[E0382]: borrow of moved value: `greeting`
 ```
 
 Again E0382 — the pattern is consistent. The compiler shows the full ownership chain: `greeting` was created on line 13, moved on line 14, and invalidly used on line 15. Notice how Rust tracks ownership across function boundaries. It does not matter that `create_greeting` and `add_exclamation` return values — the compiler understands the flow of ownership through the entire program.
+
+---
+
+| [Prev: Ownership Transfer to Functions](#/katas/ownership-transfer-to-functions) | [Next: Clone as Explicit Cost](#/katas/clone-as-explicit-cost) |

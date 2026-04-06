@@ -180,3 +180,7 @@ This is one of Rust's most important errors:
 - **"value borrowed here after move"** — `println!` tries to use `name`, but it was already moved.
 
 The fix: pass `&name` (a reference) instead of `name` (the value). The function gets read access without taking ownership.
+
+---
+
+| [Prev: String Basics — String vs &str](#/katas/string-basics) | [Next: Move Semantics](#/katas/move-semantics) |

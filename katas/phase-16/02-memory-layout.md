@@ -175,3 +175,7 @@ fn check_layout() {
 The Clippy linter also has a lint (`clippy::missing_repr`) that can warn about structs used in FFI without `#[repr(C)]`. Additionally, tools like `cbindgen` can automatically generate C header files from Rust types, but they require `#[repr(C)]` to work correctly.
 
 The lesson: **in FFI, silence from the compiler does not mean safety. You must actively annotate types with `#[repr(C)]` and verify layouts match your C counterparts.**
+
+---
+
+| [Prev: FFI Basics — Calling C Functions from Rust](#/katas/ffi-basics) | [Next: Type-State Pattern — Encoding State in the Type System](#/katas/type-state-pattern) |

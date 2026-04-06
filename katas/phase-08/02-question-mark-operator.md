@@ -157,3 +157,7 @@ This is another example of the Rust compiler being an excellent teacher:
 - **"consider adding return type"** — The compiler suggests the exact fix, including the full type signature `-> Result<(), std::io::Error>`.
 
 The `FromResidual` trait mentioned in the error is the underlying mechanism that powers `?`. For practical purposes, you can ignore it — just follow the compiler's suggestion to add a `Result` return type.
+
+---
+
+| [Prev: Defining Custom Error Types as Enums](#/katas/custom-error-enums) | [Next: From/Into for Error Type Conversion with ?](#/katas/from-into-conversion) |

@@ -74,3 +74,7 @@ error[E0614]: type `Option<&&i32>` cannot be dereferenced
 ```
 
 The compiler tells you that `result` is an `Option`, not a reference. You cannot dereference it with `*` because `Option` is not a pointer type — it is an enum that might be `None`. You must pattern match or use methods like `unwrap()`, `map()`, or `?` to extract the inner value.
+
+---
+
+| [Prev: Shadowing vs Mutation](#/katas/shadowing-vs-mutation) | [Next: Structs and Tuple Structs](#/katas/structs-and-tuple-structs) |

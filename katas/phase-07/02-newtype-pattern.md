@@ -171,3 +171,7 @@ This error is exactly what we wanted:
 - This is a **compile-time guarantee** that the arguments are in the correct order. No unit test needed. No runtime check needed. The type system enforces correctness.
 
 The broken version would have produced **no error at all** — and that silence is the real danger. The newtype pattern turns silent bugs into loud, unmissable compiler errors.
+
+---
+
+| [Prev: Enum-Driven State Machines](#/katas/enum-state-machines) | [Next: Smart Constructors for Invariant Enforcement](#/katas/smart-constructors) |

@@ -157,3 +157,7 @@ This is a runtime panic from a failed assertion. The deserialized `flags` value 
 2. **"left: 256, right: 3735928559"** -- `3735928559` is `0xDEADBEEF` (the value we stored). `256` is what we read back from the wrong byte offset -- the compiler reordered the fields, so the bytes at offset 4 are not `flags`.
 
 This is a silent data corruption bug. The code compiles, runs without crashing (usually), and produces wrong results. In a WASM context, this means the host and guest disagree on the data layout, leading to corrupted communication across the boundary.
+
+---
+
+| [Prev: Deterministic Sandboxing — No Ambient Authority](#/katas/deterministic-sandboxing) | [Next: No Garbage Collector — Ownership IS the Memory Model](#/katas/no-gc-manual-drop) |

@@ -170,3 +170,7 @@ help: consider importing this function
 The compiler cannot find `fahrenheit_to_celsius` inside the `tests` module because it was not imported. The help message suggests using `use super::fahrenheit_to_celsius` to bring it into scope. Using `use super::*` is a common shorthand that imports everything from the parent, which is convenient for test modules that need access to many items.
 
 Note: the missing `#[test]` attribute does not produce a compiler error -- it silently causes your tests to be ignored. The compiler will warn about unused functions if no code calls them, which can be a clue, but it is easy to overlook. Always verify your tests actually run by checking `cargo test` output for the expected test names.
+
+---
+
+| [Prev: use Statements and Module Paths](#/katas/use-and-paths) | [Next: Test-Driven Development](#/katas/test-driven-kata) |

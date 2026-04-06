@@ -137,3 +137,7 @@ help: insert some indirection (e.g., a `Box`, `Rc`, or `&`) to break the cycle
 ```
 
 This is one of Rust's most helpful error messages. The compiler identifies the exact field that causes the infinite size, explains why (recursive without indirection), and even suggests the fix: wrap it in `Box`. The term "indirection" means placing the value behind a pointer instead of embedding it inline. The compiler suggests `Box`, `Rc`, or `&` as options for indirection, each with different ownership semantics. For owned recursive data structures, `Box` is the standard choice.
+
+---
+
+| [Prev: Integration Tests and Doc Tests](#/katas/integration-and-doc-tests) | [Next: Rc and Shared Ownership](#/katas/rc-shared-ownership) |

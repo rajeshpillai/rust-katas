@@ -197,3 +197,7 @@ error[E0599]: no method named `send_network` found for struct
 ```
 
 This error is found during compilation, not during testing, not in production. The unauthorized code path cannot exist in the compiled binary.
+
+---
+
+| [Prev: WASI-Style Capability Passing — File Descriptors as Handles](#/katas/wasi-capability-passing) | [Next: Fuel Metering — Preventing Infinite Loops](#/katas/fuel-metering) |

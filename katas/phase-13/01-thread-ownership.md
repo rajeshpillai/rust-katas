@@ -102,3 +102,7 @@ The compiler tells you three things:
 3. **"use the `move` keyword"** -- the compiler directly suggests the fix. The `move` keyword forces the closure to take ownership of all captured variables.
 
 This is one of the most common and well-diagnosed errors in Rust. The compiler not only explains the problem but tells you exactly how to fix it.
+
+---
+
+| [Prev: Procedural Macros: Derive, Attribute, and Function-Like](#/katas/procedural-macros) | [Next: Message Passing with Channels](#/katas/message-passing) |

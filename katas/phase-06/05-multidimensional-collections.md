@@ -202,3 +202,7 @@ error[E0502]: cannot borrow `grid` as mutable because it is also borrowed as imm
 ```
 
 The compiler shows: `grid` is borrowed immutably on line 13 (via `row0`), and you try to borrow it mutably on line 14. Since `row0` is still alive, the borrows overlap. The fix: drop the reference before mutating, or use `split_at_mut` for non-overlapping mutable access.
+
+---
+
+| [Prev: Fixed Arrays vs Vec — Stack vs Heap](#/katas/arrays-vs-vec) | [Next: HashSet, BTreeMap, and Ordered Collections](#/katas/hashset-and-btreemap) |

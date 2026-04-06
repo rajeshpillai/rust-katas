@@ -201,3 +201,7 @@ This is a runtime panic from the direct filesystem access:
 2. **"called `Result::unwrap()` on an `Err` value"** -- the code assumed the file read would succeed and panicked when it did not.
 
 But notice: the error is "not found", not "access denied". The code attempted to read a sensitive system file -- the only thing that stopped it was filesystem permissions. In the capability model, the code would not have been able to attempt the read at all. The path `/etc/shadow` is not a valid argument because the API does not accept paths.
+
+---
+
+| [Prev: Sandboxed Execution — Resource Limits and Isolation](#/katas/sandboxed-execution) | [Next: Capability-Based Security — Authority Through Handles](#/katas/capability-based-security) |

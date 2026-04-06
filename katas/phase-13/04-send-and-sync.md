@@ -112,3 +112,7 @@ Reading this error:
 3. **"required by a bound in `spawn`"** -- the signature of `thread::spawn` requires `F: Send + 'static`. The closure must be `Send`, which means everything it captures must also be `Send`. Since the closure captures an `Rc`, and `Rc` is not `Send`, the closure itself is not `Send`.
 
 The compiler traces the `Send` requirement from `thread::spawn` through the closure to the captured `Rc`, and shows you exactly why it fails. The fix is to replace `Rc` with `Arc`, which provides the same API with atomic reference counting.
+
+---
+
+| [Prev: Shared State with Arc and Mutex](#/katas/shared-state-mutex) | [Next: Async Await Basics — Futures Are Lazy](#/katas/async-await-basics) |

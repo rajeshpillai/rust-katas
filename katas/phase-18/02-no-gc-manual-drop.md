@@ -157,3 +157,7 @@ This is a runtime panic from the leak detection assertion:
 2. **"Memory leak detected!"** -- the assertion message makes the bug explicit.
 
 In a real WASM module, this leak would accumulate over time. Linear memory can grow (via `memory.grow`) but never shrinks. Leaked allocations permanently reduce available memory. In long-running WASM modules (servers, plugins), this eventually exhausts linear memory and causes allocation failures.
+
+---
+
+| [Prev: ABI-Stable Layout — Why repr(C) Matters for WASM](#/katas/repr-c-abi-layout) | [Next: Export Convention — Functions the Host Can Call](#/katas/extern-c-export-convention) |

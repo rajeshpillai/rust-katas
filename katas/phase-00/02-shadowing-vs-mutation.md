@@ -66,3 +66,7 @@ error[E0308]: mismatched types
 ```
 
 The compiler sees that `x` was declared as `&str` (inferred from `"5"`). When you try to assign `x.len()` (which returns `usize`), the types do not match. Rust does not do implicit type conversion. The fix is to use shadowing instead of mutation.
+
+---
+
+| [Prev: Variables and Mutability](#/katas/variables-and-mutability) | [Next: Option and Result](#/katas/option-and-result) |

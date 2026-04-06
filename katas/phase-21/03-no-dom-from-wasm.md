@@ -225,3 +225,7 @@ The compiler errors are straightforward:
 2. **"no method named `append_child` found"** -- same issue. The module is trying to perform an operation it has no capability for.
 
 This directly models the WASM experience: if the host does not provide an import function, the module cannot call it. The absence is structural, not a permission check. The function does not exist in the module's world.
+
+---
+
+| [Prev: Batch Calls vs Chatty Calls — Minimizing Boundary Crossings](#/katas/batch-vs-chatty-calls) | [Next: Allocation Minimization — Reuse Buffers Across Calls](#/katas/allocation-minimization) |

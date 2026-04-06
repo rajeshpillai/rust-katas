@@ -192,3 +192,7 @@ The compiler error is precise:
 3. **"expected signature / found signature"** -- the compiler shows both signatures side by side for easy comparison.
 
 This is Rust's equivalent of a WASM link error. Just as a WASM runtime rejects a module when import signatures do not match, the Rust compiler rejects an implementation when method signatures do not match the trait.
+
+---
+
+| [Prev: Manual Allocation and Deallocation in Linear Memory](#/katas/manual-alloc-dealloc) | [Next: Error Handling Across the Boundary — No Panics Allowed](#/katas/error-handling-across-boundary) |

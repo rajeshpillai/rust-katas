@@ -84,3 +84,7 @@ error[E0382]: borrow of moved value: `message`
 ```
 
 The same E0382 error as in the move semantics kata, but now the move happens at a function call boundary. The compiler shows that `message` was moved into `print_length` on line 8, and then used on line 9. The error message is consistent — Rust always tells you where the move happened and where the invalid use occurred.
+
+---
+
+| [Prev: Move Semantics](#/katas/move-semantics) | [Next: Returning Ownership](#/katas/returning-ownership) |

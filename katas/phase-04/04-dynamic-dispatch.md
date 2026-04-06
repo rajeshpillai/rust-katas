@@ -187,3 +187,7 @@ This is one of the most informative error messages in Rust:
 - **"it needs to allow building a vtable"** — Rust explains the underlying mechanism. A vtable is a table of function pointers, and each entry must have a fixed signature.
 - **"method `clone_self` references the `Self` type in its return type"** — Pinpoints the exact method and the exact reason. `Self` in return position means the vtable entry would need to return a value of unknown size.
 - **"consider moving `clone_self` to another trait"** — One possible fix is to split the trait so that the object-safe methods are in one trait and the non-object-safe methods are in another.
+
+---
+
+| [Prev: impl Trait in Argument and Return Position](#/katas/impl-trait) | [Next: What Are Generics? — One Function, Many Types](#/katas/what-are-generics) |

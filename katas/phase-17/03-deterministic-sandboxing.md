@@ -181,3 +181,7 @@ The compiler error tells you:
 2. **`SandboxedModule<_>`** -- the compiler knows the struct is generic over `C: Clock`, but since no `clock` value was provided, it cannot even infer the type parameter.
 
 This maps directly to WASM: if a module declares `(import "env" "clock_gettime" (func ...))` but the host does not provide that import, instantiation fails with a link error. The module cannot pretend the capability does not exist. The host must provide it, or the module does not run.
+
+---
+
+| [Prev: Linear Memory — Bounds-Checked Byte Arrays](#/katas/linear-memory-bounds) | [Next: ABI-Stable Layout — Why repr(C) Matters for WASM](#/katas/repr-c-abi-layout) |

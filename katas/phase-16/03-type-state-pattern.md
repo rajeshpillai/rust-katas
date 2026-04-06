@@ -206,3 +206,7 @@ The compiler error is remarkably clear:
 2. **"the method was found for `Connection<Authenticated>`"** -- the compiler tells you which type *does* have the method. This is a roadmap: you need to transition from `Disconnected` to `Authenticated` first.
 
 This is what "making illegal states unrepresentable" means in practice. The programmer does not need to remember to check a boolean. The compiler enforces the state machine. If you try to skip a step, the code does not compile -- and the error message tells you exactly what step you missed.
+
+---
+
+| [Prev: Memory Layout with repr(C) for FFI](#/katas/memory-layout) | [Next: Stack-Based Execution — How a Virtual Machine Evaluates](#/katas/stack-based-execution) |

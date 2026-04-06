@@ -213,3 +213,7 @@ error[E0283]: type annotations needed
 ```
 
 The compiler cannot determine which `Output` type to use because the generic parameter approach allows multiple implementations. With an associated type, this ambiguity disappears — each type has exactly one `Output`.
+
+---
+
+| [Prev: Derived Traits — Debug, Clone, PartialEq, and More](#/katas/derived-traits) | [Next: Operator Overloading via Traits](#/katas/operator-overloading) |

@@ -233,3 +233,7 @@ cargo clippy -- -W clippy::unwrap_used
 ```
 
 This will warn on every `unwrap()` call, helping you find places where panics might be hiding in your codebase.
+
+---
+
+| [Prev: From/Into for Error Type Conversion with ?](#/katas/from-into-conversion) | [Next: The Iterator Trait](#/katas/iterator-trait) |

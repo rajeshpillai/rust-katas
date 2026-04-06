@@ -104,3 +104,7 @@ help: consider cloning the value if the performance cost is acceptable
 ```
 
 The compiler's suggestion is notable: "consider cloning the value **if the performance cost is acceptable**." Rust does not just tell you how to fix the error — it reminds you that cloning is a tradeoff. This phrasing is deliberate. The compiler is your collaborator: it helps you make informed decisions, not just silence errors.
+
+---
+
+| [Prev: Returning Ownership](#/katas/returning-ownership) | [Next: Immutable Borrows](#/katas/immutable-borrows) |

@@ -195,3 +195,7 @@ error[E0308]: mismatched types
 ```
 
 The compiler expected `&str` but received `&SmartString`. Without `Deref`, these are unrelated types and no automatic conversion exists. After implementing `Deref<Target = String>`, the compiler can coerce `&SmartString` to `&String` to `&str` automatically, and the error disappears. When you see a type mismatch between a wrapper type and its inner type, implementing `Deref` is usually the answer.
+
+---
+
+| [Prev: RefCell and Interior Mutability](#/katas/refcell-interior-mutability) | [Next: Arc: Shared Ownership Across Threads](#/katas/arc-atomic-reference-counting) |

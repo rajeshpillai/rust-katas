@@ -101,3 +101,7 @@ help: consider introducing a named lifetime parameter
 ```
 
 Error E0106 is remarkably helpful. The compiler explains the fundamental problem: "the return type contains a borrowed value, but the signature does not say whether it is borrowed from `x` or `y`." It then suggests the exact fix — adding a lifetime parameter `'a` to connect the inputs and output. The compiler is teaching you what lifetimes mean: they are relationships between references.
+
+---
+
+| [Prev: Borrow Scopes and Non-Lexical Lifetimes](#/katas/borrow-scope-nll) | [Next: Structs Holding References](#/katas/structs-holding-references) |

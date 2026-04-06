@@ -116,3 +116,7 @@ error[E0277]: `Countdown` is not an iterator
 ```
 
 The compiler tells you exactly what is missing. The `for` loop requires `IntoIterator`, and the note explains that `Iterator` must be implemented for `Countdown` to satisfy that requirement. The help message points directly at the missing trait. When you see "is not an iterator," your first step should be to implement `Iterator` with its required `type Item` and `fn next()`.
+
+---
+
+| [Prev: When to Panic vs When to Return Result](#/katas/panic-vs-result) | [Next: Iterator Chaining and Lazy Evaluation](#/katas/iterator-chaining) |

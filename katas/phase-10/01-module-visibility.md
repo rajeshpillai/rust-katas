@@ -138,3 +138,7 @@ note: the function `connect` is defined here
 ```
 
 The compiler tells you exactly which item is private and where it is defined. The fix is to add `pub` before the item's definition. When you see "is private," check whether the item should truly be public. If it should, add `pub`. If it should not, reconsider your design -- maybe you need a public wrapper function that provides controlled access to the private internals.
+
+---
+
+| [Prev: Why Iterators Beat Loops](#/katas/iterators-vs-loops) | [Next: use Statements and Module Paths](#/katas/use-and-paths) |

@@ -261,3 +261,7 @@ This error is the smart constructor doing its job:
 This is a compile-time guarantee. It is not possible to create an invalid `Email` — not through carelessness, not through malice, not through a new developer who does not know the rules. The type system enforces the invariant.
 
 Note that within the same module, private fields are accessible. If your module is large, consider placing the type in its own sub-module to minimize the "trusted code" surface area.
+
+---
+
+| [Prev: The Newtype Pattern for Type Safety](#/katas/newtype-pattern) | [Next: Phantom Types: Compile-Time State Without Runtime Cost](#/katas/phantom-types) |

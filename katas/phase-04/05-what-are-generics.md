@@ -207,3 +207,7 @@ help: consider restricting type parameter `T`
 ```
 
 The compiler says: "I don't know if `T` supports `>`." Without a trait bound, `T` could be anything — a struct, a closure, a file handle. The compiler suggests adding `: PartialOrd` to promise that `T` supports comparison. This is the bridge between generics and traits.
+
+---
+
+| [Prev: Dynamic Dispatch and Object Safety](#/katas/dynamic-dispatch) | [Next: Generic Structs and Enums](#/katas/generic-structs-and-enums) |

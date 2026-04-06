@@ -63,3 +63,7 @@ error[E0384]: cannot assign twice to immutable variable `x`
 ```
 
 The compiler tells you exactly what is wrong: you declared `x` without `mut`, so it is immutable. The error code E0384 is a stable identifier — you can look it up with `rustc --explain E0384` for a detailed explanation.
+
+---
+
+|  | [Next: Shadowing vs Mutation](#/katas/shadowing-vs-mutation) |

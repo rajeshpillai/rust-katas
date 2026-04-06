@@ -181,3 +181,7 @@ This is a runtime panic from the assertion:
 2. **"Batch your calls"** -- the message prescribes the fix: send all data at once.
 
 The assertion threshold of 10 is generous -- for this workload, the ideal number is 1 (a single batch call). Real WASM applications may need a few calls (one to allocate, one to process, one to read results), but never one per data item.
+
+---
+
+| [Prev: Compute Kernel vs Glue Code — Separation of Concerns](#/katas/compute-vs-glue) | [Next: WASM Cannot Touch the DOM — Host Callbacks Required](#/katas/no-dom-from-wasm) |

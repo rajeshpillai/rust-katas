@@ -123,3 +123,7 @@ The compiler error reveals the trait system at work:
 3. **"required by a bound in `spawn`"** -- `thread::spawn` requires its closure (and everything the closure captures) to be `Send`. This is how Rust enforces thread safety at compile time.
 
 The fix is mechanical: replace `Rc` with `Arc`. But understanding *why* is what matters -- `Rc` and `Arc` have identical APIs but different safety guarantees, and the type system enforces the distinction.
+
+---
+
+| [Prev: Message Passing with Channels](#/katas/message-passing) | [Next: Send and Sync — Why Data Races Do Not Compile](#/katas/send-and-sync) |

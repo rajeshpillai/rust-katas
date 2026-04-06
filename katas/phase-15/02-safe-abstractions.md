@@ -140,3 +140,7 @@ error[E0597]: `numbers` does not live long enough
 ```
 
 This error shows Rust's borrow checker doing its job: it traces the lifetime of the borrow from creation to use, identifies where the data is dropped, and rejects the code. The safe abstraction converts runtime undefined behavior into a compile-time error. That is the purpose of safe wrappers around unsafe code.
+
+---
+
+| [Prev: Raw Pointers and Unsafe Dereferencing](#/katas/raw-pointers) | [Next: Unsafe Traits — Send and Sync Contracts](#/katas/unsafe-trait-impl) |

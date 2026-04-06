@@ -202,3 +202,7 @@ thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: ParseInt
 If you fix the header issue but keep `unwrap()`, the `"bad_age"` row produces the same panic. The only safe approach is to handle `Result` properly for every parse operation on external data.
 
 The broader lesson: **compile-time safety covers types and ownership; runtime safety for I/O is your responsibility.** Rust gives you `Result` as the tool — use it.
+
+---
+
+| [Prev: Binary Files: Structs to Bytes](#/katas/binary-files-structs-to-bytes) | [Next: Random Access with Seek](#/katas/random-access-seek) |

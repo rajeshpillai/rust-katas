@@ -186,3 +186,7 @@ error[E0277]: `MyStruct` doesn't implement `std::fmt::Display`
 ```
 
 This error tells you exactly what trait to implement, which is far more actionable than "no rules expected this token."
+
+---
+
+| [Prev: Macro Repetition Patterns](#/katas/macro-repetition) | [Next: Procedural Macros: Derive, Attribute, and Function-Like](#/katas/procedural-macros) |

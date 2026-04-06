@@ -344,3 +344,7 @@ The file should contain 3 records (210 bytes), but `File::create` wiped it and t
 This is **silent data destruction**. The program does not crash — it happily writes to the truncated file. The only way to notice is by checking the file size or reading back the data.
 
 The lesson: **understand what every `OpenOptions` flag does before opening a file for writing.** `File::create` = `OpenOptions::new().write(true).create(true).truncate(true)`. That `truncate(true)` is the silent killer.
+
+---
+
+| [Prev: Todo App: Record Layout and File Storage](#/katas/todo-app-record-layout) | [Next: Todo App: Subtasks and Record Relationships](#/katas/todo-app-subtasks) |

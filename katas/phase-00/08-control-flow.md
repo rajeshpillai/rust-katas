@@ -201,3 +201,7 @@ error[E0308]: `if` and `else` have incompatible types
 ```
 
 Since `if` is an expression, both branches must agree on the return type. This constraint catches bugs at compile time.
+
+---
+
+| [Prev: Functions — The Basic Unit of Code](#/katas/functions) | [Next: Tuples and Destructuring](#/katas/tuples-and-destructuring) |

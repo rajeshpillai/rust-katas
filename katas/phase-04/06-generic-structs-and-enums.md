@@ -226,3 +226,7 @@ help: you might be missing a type parameter
 ```
 
 The compiler cannot find a type called `T`. It helpfully suggests "you might be missing a type parameter" and shows exactly where to add `<T>`. This is the fix: `impl<T> Wrapper<T>` declares `T` as a parameter, not a concrete type.
+
+---
+
+| [Prev: What Are Generics? — One Function, Many Types](#/katas/what-are-generics) | [Next: Multiple Trait Bounds and Where Clauses](#/katas/multiple-trait-bounds) |

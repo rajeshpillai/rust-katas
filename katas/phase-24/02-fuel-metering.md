@@ -286,3 +286,7 @@ Output collected: 33 values
 ```
 
 The loop executed exactly 100 instructions (each iteration is 3 instructions: Dup, Print, JmpNz), producing 33 printed values before halting cleanly with an error.
+
+---
+
+| [Prev: Capability-Based Security — Authority Through Handles](#/katas/capability-based-security) | [Next: WASM vs Containers — Isolation Through Type Boundaries](#/katas/wasm-vs-containers) |

@@ -262,3 +262,7 @@ This is a runtime panic from the payload assertion:
 2. **right: `[72, 101, 108, 108, 111, ...]`** -- the expected payload "Hello, Pipeline!" (UTF-8 bytes).
 
 The ABI mismatch caused the reader to misinterpret the binary layout, producing corrupted output. In a real multi-module WASM pipeline processing financial data or medical records, this kind of silent corruption could have catastrophic consequences.
+
+---
+
+| [Prev: Capstone: Sandboxed Script Interpreter with Bounded Resources](#/katas/sandboxed-script-execution) | [Next: Writing and Reading Text Files](#/katas/writing-and-reading-text) |

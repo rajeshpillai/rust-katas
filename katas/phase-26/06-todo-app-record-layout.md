@@ -223,3 +223,7 @@ Records have different sizes — cannot seek to record N!
 The program demonstrates its own flaw: three records that should be identically sized occupy 13, 20, and 7 bytes respectively. The fundamental invariant of random access — **all records have the same size** — is violated.
 
 This is not a bug the compiler can catch. It is an architectural mistake. The compiler enforces memory safety, but data layout correctness is your responsibility. The lesson: **design your record format before writing a single line of I/O code.**
+
+---
+
+| [Prev: Random Access with Seek](#/katas/random-access-seek) | [Next: Todo App: CRUD Operations](#/katas/todo-app-crud) |

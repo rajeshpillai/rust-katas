@@ -221,3 +221,7 @@ error[E0599]: no method named `dangerous_operation` found for struct
 ```
 
 This is caught during compilation, long before the code can ever run in production.
+
+---
+
+| [Prev: Fuel Metering — Preventing Infinite Loops](#/katas/fuel-metering) | [Next: Capstone: Safe Plugin System with Memory Isolation](#/katas/plugin-system-capstone) |

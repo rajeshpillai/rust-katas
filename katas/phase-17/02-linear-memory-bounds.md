@@ -188,3 +188,7 @@ This is a runtime panic from Rust's built-in bounds checking on `Vec` indexing:
 2. **"the len is 65536 but the index is 70000"** -- the memory is 65536 bytes (1 page), but the code tried to access byte 70000, which is 4464 bytes past the end.
 
 In a real WASM runtime, this would be a *trap*, not a panic. The WASM spec defines that out-of-bounds memory access traps the instance. Our `Result`-based approach models this behavior: the caller receives an error and can decide how to handle it (print a message, terminate the module, grow memory and retry).
+
+---
+
+| [Prev: Stack-Based Execution — How a Virtual Machine Evaluates](#/katas/stack-based-execution) | [Next: Deterministic Sandboxing — No Ambient Authority](#/katas/deterministic-sandboxing) |

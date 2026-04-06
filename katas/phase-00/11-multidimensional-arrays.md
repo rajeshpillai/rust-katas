@@ -169,3 +169,7 @@ thread 'main' panicked at 'index out of bounds: the len is 3 but the index is 3'
 ```
 
 Array bounds are checked at runtime in Rust. Unlike C (undefined behavior on out-of-bounds), Rust panics with a clear message: the array has 3 elements (indices 0, 1, 2) but you tried to access index 3. This prevents memory corruption at the cost of a runtime check.
+
+---
+
+| [Prev: Arrays and Slices](#/katas/arrays-and-slices) | [Next: Methods and impl Blocks](#/katas/methods-and-impl) |

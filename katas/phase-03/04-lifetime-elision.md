@@ -98,3 +98,7 @@ help: consider introducing a named lifetime parameter
 ```
 
 Error E0106 asks the essential question: "is the return value borrowed from `s` or `prefix`?" The compiler cannot decide, so it asks you. The suggested fix ties all references to the same lifetime `'a`, which is safe but overly restrictive — it says the return value is related to both inputs. The better fix (shown in the correct code) only ties the return value to `s`, because that is the actual relationship. The compiler's suggestion is valid but imprecise; your annotations should reflect the true semantics of the function.
+
+---
+
+| [Prev: Dangling References](#/katas/dangling-references) | [Next: Defining and Implementing Traits](#/katas/defining-and-implementing-traits) |

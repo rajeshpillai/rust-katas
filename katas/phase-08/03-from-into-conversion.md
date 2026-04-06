@@ -218,3 +218,7 @@ This error precisely identifies the missing link:
 - **"expected `AppError` because of this"** — Points to the function's return type, showing why `AppError` is the target type.
 
 The error message is essentially a specification for the fix: implement `From<std::io::Error> for AppError`, and the `?` operator will work.
+
+---
+
+| [Prev: The ? Operator for Error Propagation](#/katas/question-mark-operator) | [Next: When to Panic vs When to Return Result](#/katas/panic-vs-result) |

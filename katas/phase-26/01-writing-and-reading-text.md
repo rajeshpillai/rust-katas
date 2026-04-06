@@ -134,3 +134,7 @@ This is a **runtime** error, not a compiler error. The program compiles fine bec
 - **`File::open` only opens existing files** — it never creates new ones
 
 The lesson: some invariants in Rust are enforced at compile time (ownership, borrowing), but file permissions and existence are runtime properties. You must use `Result` handling to deal with them.
+
+---
+
+| [Prev: Capstone: Data Processing Pipeline with Stable ABI](#/katas/data-processor-pipeline) | [Next: Buffered I/O and Line-by-Line Reading](#/katas/buffered-io-and-lines) |
